@@ -10,7 +10,7 @@ namespace OpenInputManager
         {
             var data = (InputManagerConfiguration)target;
 
-            DrawDefaultInspector();
+            base.OnInspectorGUI();
 
             if (GUILayout.Button("Load from project settings"))
                 data.LoadFromProjectSettings();
