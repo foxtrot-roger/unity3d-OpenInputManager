@@ -15,15 +15,17 @@ namespace OpenInputManager
 
         public static InputInfo[] ReadSettings(string assetPath = DefaultAssetPath)
         {
-            var inputManager = GetAssetManager(assetPath);
-            var axesProperty = GetAxesProperty(inputManager);
-            var arraySize = axesProperty.arraySize;
+            using (var inputManager = GetAssetManager(assetPath))
+            {
+                var axesProperty = GetAxesProperty(inputManager);
+                var arraySize = axesProperty.arraySize;
 
-            var axes = new InputInfo[arraySize];
-            for (int i = 0; i < arraySize; i++)
-                axes[i] = ReadSettings(axesProperty.GetArrayElementAtIndex(i));
+                var axes = new InputInfo[arraySize];
+                for (int i = 0; i < arraySize; i++)
+                    axes[i] = ReadSettings(axesProperty.GetArrayElementAtIndex(i));
 
-            return axes;
+                return axes;
+            }
         }
         static InputInfo ReadSettings(SerializedProperty serializedProperty)
         {
@@ -50,16 +52,18 @@ namespace OpenInputManager
 
         public static void WriteSettings(InputInfo[] axes, string assetPath = DefaultAssetPath)
         {
-            var inputManager = GetAssetManager(assetPath);
-            var axesProperty = GetAxesProperty(inputManager);
+            using (var inputManager = GetAssetManager(assetPath))
+            {
+                var axesProperty = GetAxesProperty(inputManager);
 
-            var arraySize = axes.Length;
+                var arraySize = axes.Length;
 
-            axesProperty.arraySize = arraySize;
-            for (int i = 0; i < arraySize; i++)
-                WriteSettings(axes[i], axesProperty.GetArrayElementAtIndex(i));
+                axesProperty.arraySize = arraySize;
+                for (int i = 0; i < arraySize; i++)
+                    WriteSettings(axes[i], axesProperty.GetArrayElementAtIndex(i));
 
-            inputManager.ApplyModifiedProperties();
+                inputManager.ApplyModifiedProperties();
+            }
         }
         static void WriteSettings(InputInfo axis, SerializedProperty serializedProperty)
         {
