@@ -8,14 +8,14 @@ namespace OpenInputManager
     {
         public const string DefaultAssetPath = "ProjectSettings/InputManager.asset";
 
-        public const string DefaultJoystickName = "joystick";
-        public const string DefaultJoystickButtonName = "button";
-        public const int DefaultJoystickButtonCount = 20;
-        public const string DefaultMouseButtonName = "mouse";
+        public const string UnityJoystickName = "joystick";
+        public const string UnityJoystickButtonName = "button";
+        public const int UnityJoystickButtonCount = 20;
+        public const string UnityMouseButtonName = "mouse";
 
         public static InputInfo[] ReadSettings(string assetPath = DefaultAssetPath)
         {
-            using (var inputManager = GetAssetManager(assetPath))
+            using (var inputManager = GetSeriallizedInputManager(assetPath))
             {
                 var axesProperty = GetAxesProperty(inputManager);
                 var arraySize = axesProperty.arraySize;
@@ -52,7 +52,7 @@ namespace OpenInputManager
 
         public static void WriteSettings(InputInfo[] axes, string assetPath = DefaultAssetPath)
         {
-            using (var inputManager = GetAssetManager(assetPath))
+            using (var inputManager = GetSeriallizedInputManager(assetPath))
             {
                 var axesProperty = GetAxesProperty(inputManager);
 
@@ -177,14 +177,14 @@ namespace OpenInputManager
                 return KeyCode.JoystickButton0 + (int)joystickButtonNumber;
 
             else
-                return KeyCode.Joystick1Button0 + ((int)joystickButtonNumber * DefaultJoystickButtonCount) + (int)joystickButtonNumber;
+                return KeyCode.Joystick1Button0 + ((int)joystickButtonNumber * UnityJoystickButtonCount) + (int)joystickButtonNumber;
         }
 
-        public static string UnityInputName(JoystickNumber joystickNumber, JoystickButtonNumber joystickButtonNumber, string joystickName = DefaultJoystickName, string joystickButtonName = DefaultJoystickButtonName)
+        public static string UnityInputName(JoystickNumber joystickNumber, JoystickButtonNumber joystickButtonNumber, string joystickName = UnityJoystickName, string joystickButtonName = UnityJoystickButtonName)
         {
             return joystickNumber.UnityInputName(joystickName) + " " + joystickButtonNumber.UnityInputName(joystickButtonName);
         }
-        public static string UnityInputName(this JoystickNumber joystickNumber, string joystickName = DefaultJoystickName)
+        public static string UnityInputName(this JoystickNumber joystickNumber, string joystickName = UnityJoystickName)
         {
             if (joystickNumber == JoystickNumber.AllJoysticks)
                 return joystickName;
@@ -192,11 +192,11 @@ namespace OpenInputManager
             else
                 return joystickName + " " + (int)joystickNumber;
         }
-        public static string UnityInputName(this JoystickButtonNumber joystickButtonNumber, string joystickButtonName = DefaultJoystickButtonName)
+        public static string UnityInputName(this JoystickButtonNumber joystickButtonNumber, string joystickButtonName = UnityJoystickButtonName)
         {
             return joystickButtonName + " " + (int)joystickButtonNumber;
         }
-        public static string UnityInputName(this MouseButtonNumber mouseButtonNumber, string mouseButtonName = DefaultMouseButtonName)
+        public static string UnityInputName(this MouseButtonNumber mouseButtonNumber, string mouseButtonName = UnityMouseButtonName)
         {
             return mouseButtonName + " " + (int)mouseButtonNumber;
         }
@@ -222,15 +222,15 @@ namespace OpenInputManager
             return "Key_" + unityButtonName;
         }
 
-        static SerializedObject GetAssetManager(string assetPath)
+        static SerializedObject GetSeriallizedInputManager(string assetPath)
         {
             var inputManager = AssetDatabase.LoadAllAssetsAtPath(assetPath)[0];
             var serializedObject = new SerializedObject(inputManager);
             return serializedObject;
         }
-        static SerializedProperty GetAxesProperty(SerializedObject serializedObject)
+        static SerializedProperty GetAxesProperty(SerializedObject inputManager)
         {
-            return serializedObject.FindProperty("m_Axes");
+            return inputManager.FindProperty("m_Axes");
         }
     }
 }

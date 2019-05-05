@@ -22,7 +22,7 @@ public class LogInputToConsoleComponent : MonoBehaviour
         try
         {
             if (Input.GetButton(axisConfig.Name))
-                Debug.Log(axisConfig.Name);
+                Debug.Log("Axis : " + axisConfig.Name);
         }
         catch (System.Exception)
         {
@@ -35,7 +35,7 @@ public class LogInputToConsoleComponent : MonoBehaviour
         {
             var value = Input.GetAxis(axisConfig.Name);
             if (value != 0)
-                Debug.Log(axisConfig.Name);
+                Debug.Log("Button : " + axisConfig.Name);
         }
         catch (System.Exception)
         {
