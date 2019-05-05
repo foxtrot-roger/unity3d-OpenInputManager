@@ -9,8 +9,10 @@ namespace OpenInputManager
         public const string DefaultAssetPath = "ProjectSettings/InputManager.asset";
 
         public const string UnityJoystickName = "joystick";
+
         public const string UnityJoystickButtonName = "button";
         public const int UnityJoystickButtonCount = 20;
+
         public const string UnityMouseButtonName = "mouse";
 
         public static InputInfo[] ReadSettings(string assetPath = DefaultAssetPath)
