@@ -10,6 +10,7 @@ After you have added or removed inputs, you can read them as you'd do normally t
 * ...
 
 ## How to
+### Read and write settings
 ```c#
 var inputManagerSettings = InputManager.ReadSettings();
 
@@ -25,6 +26,44 @@ var inputManagerSettings = InputManager.ReadSettings(pathToSettingsAsset);
 // [change settings or do something with them]
 
 InputManager.WriteSettings(inputManagerSettings, pathToSettingsAsset);
+```
+### Create buttons
+#### Keyboard key
+```c#
+var keyboardKey = new InputSettings()
+  .ConfigureInfo("name")
+  .ConfigureButton("space");
+```
+#### Mouse button
+```c#
+var mouseButton = new InputSettings()
+  .ConfigureInfo("name")
+  .ConfigureButton(MouseButtonNumber.Mouse0);
+```
+#### Joystick button
+```c#
+var joystickButton = new InputSettings()
+  .ConfigureInfo("name")
+  .ConfigureButton(JoystickNumber.Joystick1, JoystickButtonNumber.Button0);
+```
+### Create axes
+#### Keyboard key axis
+```c#
+var keyAxis = new InputSettings()
+  .ConfigureInfo("name")
+  .ConfigureButtonAxis("w", "d");
+```
+#### Joystick axis
+```c#
+var joystickAxis = new InputSettings()
+  .ConfigureInfo("name")
+  .ConfigureJoystickAxis(JoystickNumber.Joystick1, AxisNumber.AxisX);
+```
+#### Joystick button axis
+```c#
+var joystickAxis = new InputSettings()
+  .ConfigureInfo("name")
+  .ConfigureButtonAxis(JoystickButtonNumber.Button0, JoystickButtonNumber.Button1);
 ```
 
 ## How does it work?
