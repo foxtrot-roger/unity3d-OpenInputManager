@@ -22,9 +22,9 @@ namespace OpenInputManager
             var inputManagerSettings = new InputManagerSettings();
 
             Deserialize(
-                GetInputManagerSerializer(settingsAssetPath),
+                GetInputManagerSerializer(),
                 inputManagerSettings,
-                GetSeriallizedInputManager());
+                GetSeriallizedInputManager(settingsAssetPath));
 
             return inputManagerSettings;
         }
