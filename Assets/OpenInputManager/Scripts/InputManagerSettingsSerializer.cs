@@ -16,7 +16,9 @@ namespace OpenInputManager
 
         public void Serialize(InputManagerSettings inputManagerSettings, SerializedObject serializedObject)
         {
-            var settingsCount = inputManagerSettings.Axes?.Count ?? 0;
+            int settingsCount = 0;
+            if (inputManagerSettings.Axes != null)
+                settingsCount = inputManagerSettings.Axes.Count;
 
             var axesProperty = serializedObject.FindProperty(AxesPropertyPath);
             axesProperty.arraySize = settingsCount;

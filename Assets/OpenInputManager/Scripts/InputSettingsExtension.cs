@@ -275,7 +275,10 @@ namespace OpenInputManager
         [Obsolete]
         public static InputSettings FindByName(this List<InputSettings> axes, string axisName)
         {
-            return axes?.Find(o => o.Name == axisName);
+            if (axes == null)
+                return null;
+            else
+                return axes.Find(o => o.Name == axisName);
         }
         [Obsolete]
         public static InputSettings GetOrCreate(this List<InputSettings> axes, string axisName)

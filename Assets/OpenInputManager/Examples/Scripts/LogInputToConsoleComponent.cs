@@ -13,14 +13,17 @@ public class LogInputToConsoleComponent : MonoBehaviour
 
     void Update()
     {
-        var settings = InputSettingsDisplayComponent?.InputManagerSettings?.Axes ?? Enumerable.Empty<InputSettings>();
-        foreach (var input in settings)
+        if (InputSettingsDisplayComponent.InputManagerSettings != null)
         {
-            if (input.AxisType == AxisType.JoystickAxis)
-                ShowAxis(input);
+            var settings = InputSettingsDisplayComponent.InputManagerSettings.Axes ?? Enumerable.Empty<InputSettings>();
+            foreach (var input in settings)
+            {
+                if (input.AxisType == AxisType.JoystickAxis)
+                    ShowAxis(input);
 
-            else if (input.AxisType == AxisType.KeyOrMouseButton)
-                ShowButton(input);
+                else if (input.AxisType == AxisType.KeyOrMouseButton)
+                    ShowButton(input);
+            }
         }
     }
 
