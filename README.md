@@ -36,7 +36,7 @@ var button = new InputSettings()
 ```
 #### Mouse button
 ```c#
-var button = new InputSettings()
+var mouseButton = new InputSettings()
   .ConfigureInfo("name")
   .ConfigureButton(MouseButtonNumber.Mouse0);
 ```
@@ -49,7 +49,7 @@ var joystickButton = new InputSettings()
 ### Create axes
 #### Keyboard key axis
 ```c#
-var button = new InputSettings()
+var keyAxis = new InputSettings()
   .ConfigureInfo("name")
   .ConfigureButtonAxis("w", "d" );
 ```
@@ -61,7 +61,7 @@ var joystickAxis = new InputSettings()
 ```
 #### Joystick button axis
 ```c#
-var button = new InputSettings()
+var joystickAxis = new InputSettings()
   .ConfigureInfo("name")
   .ConfigureButtonAxis(JoystickButtonNumber.Button0, JoystickButtonNumber.Button1 );
 ```
