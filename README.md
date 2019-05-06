@@ -31,7 +31,7 @@ InputManager.WriteSettings(inputManagerSettings, pathToSettingsAsset);
 ### tldr;
 It hacks into the Unity's private InputManager class.
 ### Really
-It gets the InputManager from the AssetDatabase of the project, wrap it into a <c>SerializedObject</c> then map it to simple c# classes.
+It gets the InputManager from the AssetDatabase of the project, wraps it into a <c>SerializedObject</c> then map it to simple C# classes.
 
 ## Notes
 ### On performances
