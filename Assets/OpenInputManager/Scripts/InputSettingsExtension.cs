@@ -270,27 +270,5 @@ namespace OpenInputManager
         {
             return inputSettings.SetAltNegativeButton(UnityFormat.MouseButtonName(mouseButtonNumber));
         }
-
-
-        [Obsolete]
-        public static InputSettings FindByName(this List<InputSettings> axes, string axisName)
-        {
-            if (axes == null)
-                return null;
-            else
-                return axes.Find(o => o.Name == axisName);
-        }
-        [Obsolete]
-        public static InputSettings GetOrCreate(this List<InputSettings> axes, string axisName)
-        {
-            var axis = axes.FindByName(axisName);
-            if (axis == null)
-            {
-                axis = new InputSettings { Name = axisName };
-                axes.Add(axis);
-            }
-
-            return axis;
-        }
     }
 }
