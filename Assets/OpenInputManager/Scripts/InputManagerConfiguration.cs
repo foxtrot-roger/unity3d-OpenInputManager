@@ -6,13 +6,13 @@ namespace OpenInputManager
     [CreateAssetMenu(menuName = "Project Settings/Input Manager Configuration")]
     public class InputManagerConfiguration : ScriptableObject
     {
-        public string AssetPath = InputManagerSettings.SettingsAssetPath;
+        public string AssetPath = InputManager.SettingsAssetPath;
 
         public InputManagerSettings InputManagerSettings;
 
         public void LoadFromProjectSettings()
         {
-            InputManagerSettings = InputManagerSettings.FromAsset();
+            InputManagerSettings = InputManager.ReadSettings();
 
             EditorUtility.SetDirty(this);
 
@@ -20,7 +20,7 @@ namespace OpenInputManager
         }
         public void SaveToProjectSettings()
         {
-            InputManagerSettings.ToAsset(InputManagerSettings);
+            InputManager.WriteSettings(InputManagerSettings);
 
             Debug.Log("Configuration saved to project settings.");
         }
