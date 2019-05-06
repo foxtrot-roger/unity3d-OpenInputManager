@@ -51,7 +51,7 @@ var joystickButton = new InputSettings()
 ```c#
 var keyAxis = new InputSettings()
   .ConfigureInfo("name")
-  .ConfigureButtonAxis("w", "d" );
+  .ConfigureButtonAxis("w", "d");
 ```
 #### Joystick axis
 ```c#
@@ -63,7 +63,7 @@ var joystickAxis = new InputSettings()
 ```c#
 var joystickAxis = new InputSettings()
   .ConfigureInfo("name")
-  .ConfigureButtonAxis(JoystickButtonNumber.Button0, JoystickButtonNumber.Button1 );
+  .ConfigureButtonAxis(JoystickButtonNumber.Button0, JoystickButtonNumber.Button1);
 ```
 
 ## How does it work?
