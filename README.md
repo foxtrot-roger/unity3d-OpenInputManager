@@ -30,7 +30,7 @@ InputManager.WriteSettings(inputManagerSettings, pathToSettingsAsset);
 ### Create buttons
 #### Keyboard key
 ```c#
-var button = new InputSettings()
+var keyboardKey = new InputSettings()
   .ConfigureInfo("name")
   .ConfigureButton("space");
 ```
