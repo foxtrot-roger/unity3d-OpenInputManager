@@ -3,7 +3,7 @@
 namespace OpenInputManager
 {
     [Serializable]
-    public class InputInfo
+    public class InputSettings
     {
         public string Name;
         public string DescriptiveName;

@@ -1,23 +1,30 @@
 ﻿using OpenInputManager;
+using System.Linq;
 using UnityEngine;
 
 public class LogInputToConsoleComponent : MonoBehaviour
 {
-    public InputManagerConfiguration Configuration;
+    InputSettingsDisplayComponent InputSettingsDisplayComponent;
+
+    void Start()
+    {
+        InputSettingsDisplayComponent = GetComponent<InputSettingsDisplayComponent>();
+    }
 
     void Update()
     {
-        foreach (var axisConfig in Configuration.Axes)
+        var settings = InputSettingsDisplayComponent?.InputManagerSettings?.Axes ?? Enumerable.Empty<InputSettings>();
+        foreach (var input in settings)
         {
-            if (axisConfig.AxisType == AxisType.JoystickAxis)
-                ShowAxis(axisConfig);
+            if (input.AxisType == AxisType.JoystickAxis)
+                ShowAxis(input);
 
-            else if (axisConfig.AxisType == AxisType.KeyOrMouseButton)
-                ShowButton(axisConfig);
+            else if (input.AxisType == AxisType.KeyOrMouseButton)
+                ShowButton(input);
         }
     }
 
-    void ShowButton(InputInfo axisConfig)
+    void ShowButton(InputSettings axisConfig)
     {
         try
         {
@@ -29,7 +36,7 @@ public class LogInputToConsoleComponent : MonoBehaviour
 
         }
     }
-    static void ShowAxis(InputInfo axisConfig)
+    static void ShowAxis(InputSettings axisConfig)
     {
         try
         {
