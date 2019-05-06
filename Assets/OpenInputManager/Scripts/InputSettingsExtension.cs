@@ -61,7 +61,7 @@ namespace OpenInputManager
             string positiveButton,
             string altPositiveButton = null)
         {
-            return inputSettings.TypeIsKeyOrMouseButton()
+            return inputSettings.SetTypeKeyOrMouseButton()
                 .SetPositiveButton(positiveButton)
                 .SetAltPositiveButton(altPositiveButton);
         }
@@ -72,7 +72,7 @@ namespace OpenInputManager
             JoystickButtonNumber? altPositiveJoystickButton = null)
         {
             return inputSettings
-                .TypeIsKeyOrMouseButton()
+                .SetTypeKeyOrMouseButton()
                 .SetPositiveButton(joystickNumber, positiveJoystickButton)
                 .SetAltPositiveButton(joystickNumber, altPositiveJoystickButton);
         }
@@ -81,7 +81,7 @@ namespace OpenInputManager
             MouseButtonNumber positiveButton,
             MouseButtonNumber? altPositiveButton = null)
         {
-            return inputSettings.TypeIsKeyOrMouseButton()
+            return inputSettings.SetTypeKeyOrMouseButton()
                 .SetPositiveButton(positiveButton)
                 .SetAltPositiveButton(altPositiveButton);
         }
@@ -93,7 +93,7 @@ namespace OpenInputManager
             string altPositiveButton = null,
             string altNegativeButton = null)
         {
-            return inputSettings.TypeIsKeyOrMouseButton()
+            return inputSettings.SetTypeKeyOrMouseButton()
                 .SetPositiveButton(positiveButton)
                 .SetAltPositiveButton(altPositiveButton)
                 .SetNegativeButton(negativeButton)
@@ -107,7 +107,7 @@ namespace OpenInputManager
             JoystickButtonNumber? altPositiveButton = null,
             JoystickButtonNumber? altNegativeButton = null)
         {
-            return inputSettings.TypeIsKeyOrMouseButton()
+            return inputSettings.SetTypeKeyOrMouseButton()
                 .SetPositiveButton(joystickNumber, positiveButton)
                 .SetAltPositiveButton(joystickNumber, altPositiveButton)
                 .SetNegativeButton(joystickNumber, negativeButton)
@@ -120,7 +120,7 @@ namespace OpenInputManager
             MouseButtonNumber? altPositiveButton = null,
             MouseButtonNumber? altNegativeButton = null)
         {
-            return inputSettings.TypeIsKeyOrMouseButton()
+            return inputSettings.SetTypeKeyOrMouseButton()
                 .SetPositiveButton(positiveButton)
                 .SetAltPositiveButton(altPositiveButton)
                 .SetNegativeButton(negativeButton)
@@ -131,7 +131,7 @@ namespace OpenInputManager
             this InputSettings inputSettings,
             AxisNumber axisNumber)
         {
-            return inputSettings.TypeIsMouseMovement(axisNumber);
+            return inputSettings.SetTypeMouseMovement(axisNumber);
         }
 
         public static InputSettings ConfigureJoystickAxis(
@@ -140,7 +140,7 @@ namespace OpenInputManager
             AxisNumber axisNumber)
         {
             return inputSettings
-                .TypeIsJoystickAxis(joystickNumber, axisNumber);
+                .SetTypeJoystickAxis(joystickNumber, axisNumber);
         }
 
         public static InputSettings ConfigureJoystickButtonAxis(
@@ -152,14 +152,14 @@ namespace OpenInputManager
             JoystickButtonNumber? altPositiveJoystickButton = null)
         {
             return inputSettings
-                .TypeIsKeyOrMouseButton()
+                .SetTypeKeyOrMouseButton()
                 .SetPositiveButton(joystickNumber, positiveJoystickButton)
                 .SetNegativeButton(joystickNumber, negativeJoystickButton)
                 .SetAltNegativeButton(joystickNumber, altNegativeJoystickButton)
                 .SetAltPositiveButton(joystickNumber, altPositiveJoystickButton);
         }
 
-        public static InputSettings TypeIsKeyOrMouseButton(
+        public static InputSettings SetTypeKeyOrMouseButton(
             this InputSettings inputSettings)
         {
             return inputSettings.Configure(
@@ -167,7 +167,7 @@ namespace OpenInputManager
                 axisNumber: AxisNumber.AxisX,
                 joystickNumber: JoystickNumber.AllJoysticks);
         }
-        public static InputSettings TypeIsJoystickAxis(
+        public static InputSettings SetTypeJoystickAxis(
             this InputSettings inputSettings,
             JoystickNumber joystickNumber,
             AxisNumber axisNumber)
@@ -177,7 +177,7 @@ namespace OpenInputManager
                 joystickNumber: joystickNumber,
                 axisNumber: axisNumber);
         }
-        public static InputSettings TypeIsMouseMovement(
+        public static InputSettings SetTypeMouseMovement(
             this InputSettings inputSettings,
             AxisNumber axisNumber)
         {
