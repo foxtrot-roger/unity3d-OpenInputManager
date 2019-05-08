@@ -1,4 +1,5 @@
 ﻿using OpenInputManager;
+using System;
 using UnityEngine;
 
 public class LogAllAxesToConsoleComponent : MonoBehaviour
@@ -43,7 +44,7 @@ public class LogAllAxesToConsoleComponent : MonoBehaviour
             if (Input.GetButton(axisConfig.Name))
                 Debug.Log("Axis : " + axisConfig.Name);
         }
-        catch (System.Exception)
+        catch (Exception)
         {
 
         }
@@ -56,7 +57,7 @@ public class LogAllAxesToConsoleComponent : MonoBehaviour
             if (value != 0)
                 Debug.Log("Button : " + axisConfig.Name);
         }
-        catch (System.Exception)
+        catch (Exception)
         {
 
         }
