@@ -198,10 +198,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1940407534}
-  - component: {fileID: 1940407533}
   - component: {fileID: 1940407532}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: LogAllAxesToConsole
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -218,18 +217,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 984f03436cf3e1441b01d303ffb58441, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1940407533
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1940407531}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 276001a3c8bee8645aea98951310c930, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  RefreshRate: 2
   InputManagerSettings:
     Axes: []
 --- !u!4 &1940407534
