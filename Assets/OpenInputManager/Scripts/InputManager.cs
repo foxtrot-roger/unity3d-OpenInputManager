@@ -1,10 +1,13 @@
-﻿using UnityEditor;
+﻿using System;
+using UnityEditor;
 
 namespace OpenInputManager
 {
     public static class InputManager
     {
         public const string SettingsAssetPath = "ProjectSettings/InputManager.asset";
+
+        public static event Action<string, InputManagerSettings> OnSettingsSaved;
 
         public static SerializedObject GetSeriallizedInputManager(string settingsAssetPath = SettingsAssetPath)
         {
@@ -31,6 +34,9 @@ namespace OpenInputManager
         public static void SaveToProjectSettings(InputManagerSettings inputManagerSettings, string settingsAssetPath = SettingsAssetPath)
         {
             Serialize(GetInputManagerSerializer(), inputManagerSettings, GetSeriallizedInputManager(settingsAssetPath));
+
+            if (OnSettingsSaved != null)
+                OnSettingsSaved(settingsAssetPath, inputManagerSettings);
         }
 
         public static void Deserialize(ISerializer<InputManagerSettings, SerializedObject> serializer, InputManagerSettings inputManagerSettings, SerializedObject serializedObject)

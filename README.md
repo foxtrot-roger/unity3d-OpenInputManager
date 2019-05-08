@@ -65,6 +65,16 @@ var joystickAxis = new InputSettings()
   .ConfigureInfo("name")
   .ConfigureButtonAxis(JoystickButtonNumber.Button0, JoystickButtonNumber.Button1);
 ```
+### Detect changes
+This event will only be triggered if <code>InputManager.SaveToProjectSettings(...)</code> is used, there is currently no easy way to know when the user changes settings using _ProjectSettings/Input_ from the unity editor.
+```c#
+InputManager.OnSettingsSaved += OnSettingsSaved;
+
+void OnSettingsSaved(string settingsAssetPath, InputManagerSettings newSettings)
+{
+	// do something with the new settings
+}
+```
 
 ## How does it work?
 ### tldr;
