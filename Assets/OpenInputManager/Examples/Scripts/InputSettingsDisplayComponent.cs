@@ -14,7 +14,7 @@ public class InputSettingsDisplayComponent : MonoBehaviour
         currentDeltaTime += Time.deltaTime;
         if (RefreshRate <= currentDeltaTime)
         {
-            InputManagerSettings = InputManager.ReadSettings();
+            InputManagerSettings = InputManager.LoadFromProjectSettings();
 
             EditorUtility.SetDirty(this);
             currentDeltaTime = 0;
