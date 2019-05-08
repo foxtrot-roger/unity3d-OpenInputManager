@@ -178,7 +178,8 @@
             return inputSettings.Configure(
                 axisType: AxisType.JoystickAxis,
                 joystickNumber: joystickNumber,
-                axisNumber: axisNumber);
+                axisNumber: axisNumber,
+                sensitivity: 1);
         }
         public static InputSettings SetTypeMouseMovement(
             this InputSettings inputSettings,
@@ -187,7 +188,8 @@
             return inputSettings.Configure(
                 axisType: AxisType.MouseMovement,
                 joystickNumber: JoystickNumber.AllJoysticks,
-                axisNumber: axisNumber);
+                axisNumber: axisNumber,
+                sensitivity: 1);
         }
 
         public static InputSettings SetPositiveButton(
