@@ -12,20 +12,20 @@ After you have added or removed inputs, you can read them as you'd do normally t
 ## How to
 ### Read and write settings
 ```c#
-var inputManagerSettings = InputManager.ReadSettings();
+var inputManagerSettings = InputManager.LoadFromProjectSettings();
 
 // [change settings or do something with them]
 
-InputManager.WriteSettings(inputManagerSettings);
+InputManager.SaveToProjectSettings(inputManagerSettings);
 ```
 By default the path to the input manager settings is "ProjectSettings/InputManager.asset" in Unity but if it was to change, it is possible to still us the methods by providing the input manager settings path.
 ```c#
 var pathToSettingsAsset = "some/new/path/to/asset";
-var inputManagerSettings = InputManager.ReadSettings(pathToSettingsAsset);
+var inputManagerSettings = InputManager.LoadFromProjectSettings(pathToSettingsAsset);
 
 // [change settings or do something with them]
 
-InputManager.WriteSettings(inputManagerSettings, pathToSettingsAsset);
+InputManager.SaveToProjectSettings(inputManagerSettings, pathToSettingsAsset);
 ```
 ### Create buttons
 #### Keyboard key

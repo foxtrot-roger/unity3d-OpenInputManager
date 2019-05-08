@@ -17,7 +17,7 @@ namespace OpenInputManager
             return new InputManagerSettingsSerializer(new InputSettingsSerializer());
         }
 
-        public static InputManagerSettings ReadSettings(string settingsAssetPath = SettingsAssetPath)
+        public static InputManagerSettings LoadFromProjectSettings(string settingsAssetPath = SettingsAssetPath)
         {
             var inputManagerSettings = new InputManagerSettings();
 
@@ -28,7 +28,7 @@ namespace OpenInputManager
 
             return inputManagerSettings;
         }
-        public static void WriteSettings(InputManagerSettings inputManagerSettings, string settingsAssetPath = SettingsAssetPath)
+        public static void SaveToProjectSettings(InputManagerSettings inputManagerSettings, string settingsAssetPath = SettingsAssetPath)
         {
             Serialize(GetInputManagerSerializer(), inputManagerSettings, GetSeriallizedInputManager(settingsAssetPath));
         }
