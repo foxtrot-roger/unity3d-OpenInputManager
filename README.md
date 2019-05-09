@@ -95,3 +95,4 @@ The default axes used by the EventSystem are:
 * Cancel
 ### Other
 * After saving settings to the project, the new buttons and axes can be used within a second (from what I've tested)
+* The _ProjectSettings/Input_ configuration is reset when exiting playmode
