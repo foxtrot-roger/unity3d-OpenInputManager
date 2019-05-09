@@ -86,5 +86,12 @@ It gets the InputManager from the AssetDatabase of the project, wraps it into a 
 ### On performances
 * Obviously we're accessing data through <c>SerializedObject</c> so expect it to be fairly slow (ie. don't go read ever frame).
 * Less obvious, we're creating objects that are <c>class</c>, not <c>struct</c> so there will be some garbage created and the garbage collector will be used to clean it. 
+### UI and EventSystem
+When using any kind of UI, you'll have an EventSystem in the scene, that EventSystem relies on specific axes to work properly, removing or renaming them will cause issues. If you wish to change them, make sure to update the _Standalone Input Module_ of the scene EventSystem.
+The default axes used by the EventSystem are:
+* Horizontal
+* Vertical
+* Submit
+* Cancel
 ### Other
 * After saving settings to the project, the new buttons and axes can be used within a second (from what I've tested)
