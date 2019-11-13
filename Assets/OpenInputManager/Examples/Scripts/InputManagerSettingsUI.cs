@@ -8,7 +8,7 @@ public class InputManagerSettingsUI : MonoBehaviour
 
     void OnEnable()
     {
-        InputManagerSettings = InputManager.LoadFromProjectSettings();
+        InputManagerSettings = InputManager.GetCurrentSettings();
         InputManager.OnSettingsSaved += UpdateSettings;
     }
     void OnDisable()
@@ -17,7 +17,7 @@ public class InputManagerSettingsUI : MonoBehaviour
     }
     void Start()
     {
-        SetModel(InputManager.LoadFromProjectSettings());
+        SetModel(InputManager.GetCurrentSettings());
     }
 
     public void SetModel(InputManagerSettings inputManagerSettings)

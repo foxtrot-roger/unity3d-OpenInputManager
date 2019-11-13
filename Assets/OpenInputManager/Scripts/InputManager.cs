@@ -9,48 +9,46 @@ namespace OpenInputManager
 
         public static event Action<string, InputManagerSettings> OnSettingsSaved;
 
-        public static SerializedObject GetSeriallizedInputManager(string settingsAssetPath = SettingsAssetPath)
+        public static SerializedObject GetSeriallizedAsset(string settingsAssetPath = SettingsAssetPath)
         {
             var inputManager = AssetDatabase.LoadAllAssetsAtPath(settingsAssetPath)[0];
             var serializedObject = new SerializedObject(inputManager);
             return serializedObject;
         }
-        public static ISerializer<InputManagerSettings, SerializedObject> GetInputManagerSerializer()
+
+        public static IMapper<SerializedObject, InputManagerSettings> SerializedObjectToInputManagerSettingsMapper()
         {
-            return new InputManagerSettingsSerializer(new InputSettingsSerializer());
+            return new InputManagerMapping.SerializedObjectToInputManagerSettings(
+                new InputSettingsMapping.SerializedPropertyToInputSettings());
+        }
+        public static IMapper<InputManagerSettings, SerializedObject> InputManagerSettingsToSerializedObjectMapper()
+        {
+            return new InputManagerMapping.InputManagerSettingsToSerializedObject(
+                new InputSettingsMapping.InputSettingsToSerializedProperty());
         }
 
-        public static InputManagerSettings LoadFromProjectSettings(string settingsAssetPath = SettingsAssetPath)
+        public static InputManagerSettings GetCurrentSettings(string settingsAssetPath = SettingsAssetPath)
         {
             var inputManagerSettings = new InputManagerSettings();
+            var mapper = SerializedObjectToInputManagerSettingsMapper();
 
-            Deserialize(
-                GetInputManagerSerializer(),
-                inputManagerSettings,
-                GetSeriallizedInputManager(settingsAssetPath));
+            using (var serializedObject = GetSeriallizedAsset(settingsAssetPath))
+                mapper.Map(serializedObject, inputManagerSettings);
+
 
             return inputManagerSettings;
         }
-        public static void SaveToProjectSettings(InputManagerSettings inputManagerSettings, string settingsAssetPath = SettingsAssetPath)
+        public static void SetCurrentSettings(InputManagerSettings inputManagerSettings, string settingsAssetPath = SettingsAssetPath)
         {
-            Serialize(GetInputManagerSerializer(), inputManagerSettings, GetSeriallizedInputManager(settingsAssetPath));
+            var mapper = InputManagerSettingsToSerializedObjectMapper();
+            using (var serializedObject = GetSeriallizedAsset(settingsAssetPath))
+            {
+                mapper.Map(inputManagerSettings, serializedObject);
+                serializedObject.ApplyModifiedProperties();
+            }
 
             if (OnSettingsSaved != null)
                 OnSettingsSaved(settingsAssetPath, inputManagerSettings);
-        }
-
-        public static void Deserialize(ISerializer<InputManagerSettings, SerializedObject> serializer, InputManagerSettings inputManagerSettings, SerializedObject serializedObject)
-        {
-            using (serializedObject)
-                serializer.Deserialize(inputManagerSettings, serializedObject);
-        }
-        public static void Serialize(ISerializer<InputManagerSettings, SerializedObject> serializer, InputManagerSettings inputManagerSettings, SerializedObject serializedObject)
-        {
-            using (serializedObject)
-            {
-                serializer.Serialize(inputManagerSettings, serializedObject);
-                serializedObject.ApplyModifiedProperties();
-            }
         }
     }
 }

@@ -8,7 +8,7 @@ public class LogAllAxesToConsoleComponent : MonoBehaviour
 
     void OnEnable()
     {
-        InputManagerSettings = InputManager.LoadFromProjectSettings();
+        InputManagerSettings = InputManager.GetCurrentSettings();
         InputManager.OnSettingsSaved += UpdateSettings;
     }
 
@@ -28,6 +28,9 @@ public class LogAllAxesToConsoleComponent : MonoBehaviour
 
                 else if (input.AxisType == AxisType.KeyOrMouseButton)
                     ShowButton(input);
+
+                else if (input.AxisType == AxisType.MouseMovement)
+                    ShowMouse(input);
             }
         }
     }
@@ -56,6 +59,19 @@ public class LogAllAxesToConsoleComponent : MonoBehaviour
             var value = Input.GetAxis(axisConfig.Name);
             if (value != 0)
                 Debug.Log("Button : " + axisConfig.Name);
+        }
+        catch (Exception)
+        {
+
+        }
+    }
+    static void ShowMouse(InputSettings axisConfig)
+    {
+        try
+        {
+            var value = Input.GetAxis(axisConfig.Name);
+            if (value != 0)
+                Debug.Log("Mouse : " + axisConfig.Name);
         }
         catch (Exception)
         {
