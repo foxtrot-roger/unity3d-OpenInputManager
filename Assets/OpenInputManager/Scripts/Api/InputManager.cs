@@ -18,12 +18,12 @@ namespace OpenInputManager
 
         public static IMapper<SerializedObject, InputManagerSettings> SerializedObjectToInputManagerSettingsMapper()
         {
-            return new InputManagerMapping.UnityToModelMapper(
+            return new InputManagerSettingsMapping.UnityToModelMapper(
                 new InputSettingsMapping.UnityToModelMapper());
         }
         public static IMapper<InputManagerSettings, SerializedObject> InputManagerSettingsToSerializedObjectMapper()
         {
-            return new InputManagerMapping.ModelToUnityMapper(
+            return new InputManagerSettingsMapping.ModelToUnityMapper(
                 new InputSettingsMapping.ModelToUnityMapper());
         }
 

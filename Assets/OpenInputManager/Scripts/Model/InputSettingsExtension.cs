@@ -205,14 +205,14 @@
             JoystickButtonNumber? joystickButtonNumber)
         {
             return inputSettings
-                .SetPositiveButton(UnityFormat.JoystickButtonName(joystickNumber, joystickButtonNumber));
+                .SetPositiveButton(UnityButtonNameFormat.JoystickButtonName(joystickNumber, joystickButtonNumber));
         }
         public static InputSettings SetPositiveButton(
             this InputSettings inputSettings,
             MouseButtonNumber? mouseButtonNumber)
         {
             return inputSettings
-                .SetPositiveButton(UnityFormat.MouseButtonName(mouseButtonNumber));
+                .SetPositiveButton(UnityButtonNameFormat.MouseButtonName(mouseButtonNumber));
         }
 
         public static InputSettings SetAltPositiveButton(
@@ -228,14 +228,14 @@
             JoystickButtonNumber? joystickButtonNumber)
         {
             return inputSettings
-                .SetAltPositiveButton(UnityFormat.JoystickButtonName(joystickNumber, joystickButtonNumber));
+                .SetAltPositiveButton(UnityButtonNameFormat.JoystickButtonName(joystickNumber, joystickButtonNumber));
         }
         public static InputSettings SetAltPositiveButton(
             this InputSettings inputSettings,
             MouseButtonNumber? mouseButtonNumber)
         {
             return inputSettings
-                .SetAltPositiveButton(UnityFormat.MouseButtonName(mouseButtonNumber));
+                .SetAltPositiveButton(UnityButtonNameFormat.MouseButtonName(mouseButtonNumber));
         }
 
         public static InputSettings SetNegativeButton(
@@ -251,14 +251,14 @@
             JoystickButtonNumber? joystickButtonNumber)
         {
             return inputSettings
-                .SetNegativeButton(UnityFormat.JoystickButtonName(joystickNumber, joystickButtonNumber));
+                .SetNegativeButton(UnityButtonNameFormat.JoystickButtonName(joystickNumber, joystickButtonNumber));
         }
         public static InputSettings SetNegativeButton(
             this InputSettings inputSettings,
             MouseButtonNumber? mouseButtonNumber)
         {
             return inputSettings
-                .SetNegativeButton(UnityFormat.MouseButtonName(mouseButtonNumber));
+                .SetNegativeButton(UnityButtonNameFormat.MouseButtonName(mouseButtonNumber));
         }
 
         public static InputSettings SetAltNegativeButton(
@@ -274,14 +274,14 @@
             JoystickButtonNumber? joystickButtonNumber)
         {
             return inputSettings
-                .SetAltNegativeButton(UnityFormat.JoystickButtonName(joystickNumber, joystickButtonNumber));
+                .SetAltNegativeButton(UnityButtonNameFormat.JoystickButtonName(joystickNumber, joystickButtonNumber));
         }
         public static InputSettings SetAltNegativeButton(
             this InputSettings inputSettings,
             MouseButtonNumber? mouseButtonNumber)
         {
             return inputSettings
-                .SetAltNegativeButton(UnityFormat.MouseButtonName(mouseButtonNumber));
+                .SetAltNegativeButton(UnityButtonNameFormat.MouseButtonName(mouseButtonNumber));
         }
     }
 }

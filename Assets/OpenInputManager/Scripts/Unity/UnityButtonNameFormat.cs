@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace OpenInputManager
 {
-    public static class UnityFormat
+    public static class UnityButtonNameFormat
     {
         public const string UnityJoystickName = "joystick";
         public const string UnityJoystickButtonName = "button";

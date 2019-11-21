@@ -3,7 +3,7 @@ using UnityEditor;
 
 namespace OpenInputManager
 {
-    public static class InputManagerMapping
+    public static class InputManagerSettingsMapping
     {
         public const string AxesPropertyPath = "m_Axes";
 
