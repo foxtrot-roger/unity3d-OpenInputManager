@@ -9,6 +9,9 @@ namespace OpenInputManager
 
         public static event Action<string, InputManagerSettings> OnSettingsSaved;
 
+        static InputManagerSettings _current = LoadFromProjectSettings();
+        public static InputManagerSettings Current { get { return _current; } }
+
         public static SerializedObject GetSeriallizedAsset(string settingsAssetPath = SettingsAssetPath)
         {
             var inputManager = AssetDatabase.LoadAllAssetsAtPath(settingsAssetPath)[0];
@@ -35,6 +38,11 @@ namespace OpenInputManager
         public static void SaveToProjectSettings(InputManagerSettings inputManagerSettings)
         {
             SaveToAsset(inputManagerSettings, SettingsAssetPath);
+
+            _current = inputManagerSettings;
+
+            if (OnSettingsSaved != null)
+                OnSettingsSaved(SettingsAssetPath, inputManagerSettings);
         }
         public static void SaveToAsset(InputManagerSettings inputManagerSettings, string settingsAssetPath)
         {
@@ -44,9 +52,6 @@ namespace OpenInputManager
                 mapper.Map(inputManagerSettings, serializedObject);
                 serializedObject.ApplyModifiedProperties();
             }
-
-            if (OnSettingsSaved != null)
-                OnSettingsSaved(settingsAssetPath, inputManagerSettings);
         }
     }
 }
