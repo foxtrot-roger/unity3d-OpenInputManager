@@ -16,21 +16,14 @@ namespace OpenInputManager
             return serializedObject;
         }
 
-        public static IMapper<SerializedObject, InputManagerSettings> SerializedObjectToInputManagerSettingsMapper()
+        public static InputManagerSettings LoadFromProjectSettings()
         {
-            return new InputManagerSettingsMapping.UnityToModelMapper(
-                new InputSettingsMapping.UnityToModelMapper());
+            return LoadFromAsset(SettingsAssetPath);
         }
-        public static IMapper<InputManagerSettings, SerializedObject> InputManagerSettingsToSerializedObjectMapper()
-        {
-            return new InputManagerSettingsMapping.ModelToUnityMapper(
-                new InputSettingsMapping.ModelToUnityMapper());
-        }
-
-        public static InputManagerSettings GetCurrentSettings(string settingsAssetPath = SettingsAssetPath)
+        public static InputManagerSettings LoadFromAsset(string settingsAssetPath)
         {
             var inputManagerSettings = new InputManagerSettings();
-            var mapper = SerializedObjectToInputManagerSettingsMapper();
+            var mapper = Mapper.CreateUnityToModelMapper();
 
             using (var serializedObject = GetSeriallizedAsset(settingsAssetPath))
                 mapper.Map(serializedObject, inputManagerSettings);
@@ -38,9 +31,14 @@ namespace OpenInputManager
 
             return inputManagerSettings;
         }
-        public static void SetCurrentSettings(InputManagerSettings inputManagerSettings, string settingsAssetPath = SettingsAssetPath)
+
+        public static void SaveToProjectSettings(InputManagerSettings inputManagerSettings)
         {
-            var mapper = InputManagerSettingsToSerializedObjectMapper();
+            SaveToAsset(inputManagerSettings, SettingsAssetPath);
+        }
+        public static void SaveToAsset(InputManagerSettings inputManagerSettings, string settingsAssetPath)
+        {
+            var mapper = Mapper.CreateModelToUnityMapper();
             using (var serializedObject = GetSeriallizedAsset(settingsAssetPath))
             {
                 mapper.Map(inputManagerSettings, serializedObject);

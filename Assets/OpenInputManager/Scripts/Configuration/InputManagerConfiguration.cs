@@ -12,7 +12,7 @@ namespace OpenInputManager
 
         public void LoadFromProjectSettings()
         {
-            InputManagerSettings = InputManager.GetCurrentSettings();
+            InputManagerSettings = InputManager.LoadFromProjectSettings();
 
             EditorUtility.SetDirty(this);
 
@@ -20,7 +20,7 @@ namespace OpenInputManager
         }
         public void SaveToProjectSettings()
         {
-            InputManager.SetCurrentSettings(InputManagerSettings);
+            InputManager.SaveToProjectSettings(InputManagerSettings);
 
             Debug.Log("Configuration saved to project settings.");
         }

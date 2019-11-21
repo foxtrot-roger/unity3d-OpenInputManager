@@ -8,7 +8,7 @@ public class LogAllAxesToConsoleComponent : MonoBehaviour
 
     void OnEnable()
     {
-        InputManagerSettings = InputManager.GetCurrentSettings();
+        InputManagerSettings = InputManager.LoadFromProjectSettings();
         InputManager.OnSettingsSaved += UpdateSettings;
     }
 
