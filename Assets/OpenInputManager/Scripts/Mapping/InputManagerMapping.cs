@@ -7,11 +7,11 @@ namespace OpenInputManager
     {
         public const string AxesPropertyPath = "m_Axes";
 
-        public class InputManagerSettingsToSerializedObject : IMapper<InputManagerSettings, SerializedObject>
+        public class ModelToUnityMapper : IMapper<InputManagerSettings, SerializedObject>
         {
             readonly IMapper<InputSettings, SerializedProperty> _propertyMapper;
 
-            public InputManagerSettingsToSerializedObject(IMapper<InputSettings, SerializedProperty> inputSettingsSerializer)
+            public ModelToUnityMapper(IMapper<InputSettings, SerializedProperty> inputSettingsSerializer)
             {
                 _propertyMapper = inputSettingsSerializer;
             }
@@ -29,11 +29,11 @@ namespace OpenInputManager
                     _propertyMapper.Map(inputManagerSettings.Axes[i], axesProperty.GetArrayElementAtIndex(i));
             }
         }
-        public class SerializedObjectToInputManagerSettings : IMapper<SerializedObject, InputManagerSettings>
+        public class UnityToModelMapper : IMapper<SerializedObject, InputManagerSettings>
         {
             readonly IMapper<SerializedProperty, InputSettings> _propertyMapper;
 
-            public SerializedObjectToInputManagerSettings(IMapper<SerializedProperty, InputSettings> propertyMapper)
+            public UnityToModelMapper(IMapper<SerializedProperty, InputSettings> propertyMapper)
             {
                 _propertyMapper = propertyMapper;
             }

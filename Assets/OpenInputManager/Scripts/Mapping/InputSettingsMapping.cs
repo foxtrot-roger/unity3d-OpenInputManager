@@ -20,7 +20,7 @@ namespace OpenInputManager
         public const string AxisNumberProperty = "axis";
         public const string JoystickNumberProperty = "joyNum";
 
-        public class InputSettingsToSerializedProperty : IMapper<InputSettings, SerializedProperty>
+        public class ModelToUnityMapper : IMapper<InputSettings, SerializedProperty>
         {
             public void Map(InputSettings inputSettings, SerializedProperty serializedProperty)
             {
@@ -41,7 +41,7 @@ namespace OpenInputManager
                 serializedProperty.FindPropertyRelative(JoystickNumberProperty).intValue = (int)inputSettings.JoystickNumber;
             }
         }
-        public class SerializedPropertyToInputSettings : IMapper<SerializedProperty, InputSettings>
+        public class UnityToModelMapper : IMapper<SerializedProperty, InputSettings>
         {
             public void Map(SerializedProperty serializedProperty, InputSettings inputSettings)
             {
