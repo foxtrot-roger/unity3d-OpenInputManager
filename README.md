@@ -12,20 +12,20 @@ After you have added or removed inputs, you can read them as you'd do normally t
 ## How to
 ### Read and write settings
 ```c#
-var inputManagerSettings = InputManager.GetCurrentSettings();
+var inputManagerSettings = InputManager.LoadFromProjectSettings();
 
 // [change settings or do something with them]
 
-InputManager.SetCurrentSettings(inputManagerSettings);
+InputManager.SaveToProjectSettings(inputManagerSettings);
 ```
 By default the path to the input manager settings is "ProjectSettings/InputManager.asset" in Unity but if it was to change, it is possible to still use the methods by providing the InputManager a path to the settings asset.
 ```c#
 var pathToSettingsAsset = "some/new/path/to/asset";
-var inputManagerSettings = InputManager.GetCurrentSettings(pathToSettingsAsset);
+var inputManagerSettings = InputManager.LoadFromProjectSettings(pathToSettingsAsset);
 
 // [change settings or do something with them]
 
-InputManager.SetCurrentSettings(inputManagerSettings, pathToSettingsAsset);
+InputManager.SaveToProjectSettings(inputManagerSettings, pathToSettingsAsset);
 ```
 ### Create buttons
 #### Keyboard key
@@ -66,7 +66,7 @@ var joystickAxis = new InputSettings()
   .ConfigureButtonAxis(JoystickButtonNumber.Button0, JoystickButtonNumber.Button1);
 ```
 ### Detect changes
-This event will only be triggered if <code>InputManager.SetCurrentSettings(...)</code> is used, there is currently no easy way to know when the user changes settings using _ProjectSettings/Input_ from the unity editor.
+This event will only be triggered if <code>InputManager.SaveToProjectSettings(...)</code> is used, there is currently no easy way to know when the user changes settings using _ProjectSettings/Input_ from the unity editor.
 ```c#
 InputManager.OnSettingsSaved += OnSettingsSaved;
 
