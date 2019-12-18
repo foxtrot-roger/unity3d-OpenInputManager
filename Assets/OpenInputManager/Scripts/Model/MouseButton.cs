@@ -1,6 +1,6 @@
 ﻿namespace OpenInputManager
 {
-    public enum MouseButtonNumber
+    public enum MouseButton
     {
         Mouse0,
         Mouse1,

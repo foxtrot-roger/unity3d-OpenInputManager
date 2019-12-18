@@ -11,24 +11,24 @@ namespace OpenInputManager
 
         public static string JoystickButtonName(
             JoystickNumber joystickNumber,
-            JoystickButtonNumber? joystickButtonNumber,
+            JoystickButton? joystickButtonNumber,
             string joystickName = UnityJoystickName,
             string joystickButtonName = UnityJoystickButtonName)
         {
             return joystickButtonNumber == null
                 ? null
-                : JoystickButtonName(joystickNumber, (JoystickButtonNumber)joystickButtonNumber, joystickName, joystickButtonName);
+                : JoystickButtonName(joystickNumber, (JoystickButton)joystickButtonNumber, joystickName, joystickButtonName);
         }
         public static string JoystickButtonName(
             JoystickNumber joystickNumber,
-            JoystickButtonNumber joystickButtonNumber,
+            JoystickButton joystickButtonNumber,
             string joystickName = UnityJoystickName,
             string joystickButtonName = UnityJoystickButtonName)
         {
             return JoystickName(joystickNumber, joystickName) + " " + JoystickButtonName(joystickButtonNumber, joystickButtonName);
         }
         public static string JoystickButtonName(
-            JoystickButtonNumber joystickButtonNumber,
+            JoystickButton joystickButtonNumber,
             string joystickButtonName = UnityJoystickButtonName)
         {
             return joystickButtonName + " " + (int)joystickButtonNumber;
@@ -45,15 +45,15 @@ namespace OpenInputManager
         }
 
         public static string MouseButtonName(
-            MouseButtonNumber? mouseButtonNumber,
+            MouseButton? mouseButtonNumber,
             string mouseButtonName = UnityMouseButtonName)
         {
             return mouseButtonNumber == null
                 ? null
-                : MouseButtonName((MouseButtonNumber)mouseButtonNumber, mouseButtonName);
+                : MouseButtonName((MouseButton)mouseButtonNumber, mouseButtonName);
         }
         public static string MouseButtonName(
-            MouseButtonNumber mouseButtonNumber,
+            MouseButton mouseButtonNumber,
             string mouseButtonName = UnityMouseButtonName)
         {
             return mouseButtonName + " " + (int)mouseButtonNumber;
@@ -61,15 +61,15 @@ namespace OpenInputManager
 
 
         public const int UnityJoystickButtonCount = KeyCode.Joystick2Button0 - KeyCode.Joystick1Button0;
-        public static KeyCode UnityKeyCode(this MouseButtonNumber mouseButtonNumber)
+        public static KeyCode UnityKeyCode(this MouseButton mouseButtonNumber)
         {
-            if (mouseButtonNumber > MouseButtonNumber.Mouse6)
+            if (mouseButtonNumber > MouseButton.Mouse6)
                 throw new NotSupportedException("KeyCode for mouse button is only supported up to mouse button 6.");
 
             else
                 return KeyCode.Mouse0 + (int)mouseButtonNumber;
         }
-        public static KeyCode UnityKeyCode(JoystickNumber joystickNumber, JoystickButtonNumber joystickButtonNumber)
+        public static KeyCode UnityKeyCode(JoystickNumber joystickNumber, JoystickButton joystickButtonNumber)
         {
             if (joystickNumber > JoystickNumber.Joystick8)
                 throw new NotSupportedException("KeyCode for joystick button is only supported up to joystick 8.");

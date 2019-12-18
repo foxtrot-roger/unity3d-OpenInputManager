@@ -1,6 +1,6 @@
 ﻿namespace OpenInputManager
 {
-    public enum JoystickButtonNumber
+    public enum JoystickButton
     {
         Button0,
         Button1,

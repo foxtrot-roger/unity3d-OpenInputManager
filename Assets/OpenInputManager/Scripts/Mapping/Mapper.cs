@@ -4,14 +4,14 @@ namespace OpenInputManager
 {
     public static class Mapper
     {
-        public static IMapper<SerializedObject, InputManagerSettings> CreateUnityToModelMapper()
+        public static IMapper<SerializedObject, InputManager> CreateUnityToModelMapper()
         {
-            return new InputManagerSettingsMapping.UnityToModelMapper(
+            return new InputManagerMapping.UnityToModelMapper(
                 new InputSettingsMapping.UnityToModelMapper());
         }
-        public static IMapper<InputManagerSettings, SerializedObject> CreateModelToUnityMapper()
+        public static IMapper<InputManager, SerializedObject> CreateModelToUnityMapper()
         {
-            return new InputManagerSettingsMapping.ModelToUnityMapper(
+            return new InputManagerMapping.ModelToUnityMapper(
                 new InputSettingsMapping.ModelToUnityMapper());
         }
 

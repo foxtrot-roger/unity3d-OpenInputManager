@@ -4,17 +4,11 @@ using UnityEngine;
 
 public class LogAllAxesToConsoleComponent : MonoBehaviour
 {
-    public InputManagerSettings InputManagerSettings;
+    public InputManager InputManagerSettings;
 
     void OnEnable()
     {
-        InputManagerSettings = InputManager.LoadFromProjectSettings();
-        InputManager.OnSettingsSaved += UpdateSettings;
-    }
-
-    void OnDisable()
-    {
-        InputManager.OnSettingsSaved -= UpdateSettings;
+        InputManagerSettings = InputManager.FromProjectSettings();
     }
 
     void Update()
@@ -35,12 +29,12 @@ public class LogAllAxesToConsoleComponent : MonoBehaviour
         }
     }
 
-    void UpdateSettings(string settingsAssetPath, InputManagerSettings newSettings)
+    void UpdateSettings(string settingsAssetPath, InputManager newSettings)
     {
         InputManagerSettings = newSettings;
     }
 
-    static void ShowButton(InputSettings axisConfig)
+    static void ShowButton(InputConfiguration axisConfig)
     {
         try
         {
@@ -52,7 +46,7 @@ public class LogAllAxesToConsoleComponent : MonoBehaviour
 
         }
     }
-    static void ShowAxis(InputSettings axisConfig)
+    static void ShowAxis(InputConfiguration axisConfig)
     {
         try
         {
@@ -65,7 +59,7 @@ public class LogAllAxesToConsoleComponent : MonoBehaviour
 
         }
     }
-    static void ShowMouse(InputSettings axisConfig)
+    static void ShowMouse(InputConfiguration axisConfig)
     {
         try
         {

@@ -7,12 +7,12 @@ using UnityEngine.UI;
 
 public class InputSettingsUI : MonoBehaviour
 {
-    public InputSettings InputSettings;
+    public InputConfiguration InputSettings;
     public Text NameText;
     public Text StateText;
-    Action<InputSettings> UpdateUI;
+    Action<InputConfiguration> UpdateUI;
 
-    public void SetModel(InputSettings inputSettings)
+    public void SetModel(InputConfiguration inputSettings)
     {
         InputSettings = inputSettings;
         NameText.text = inputSettings.Name;
@@ -35,13 +35,13 @@ public class InputSettingsUI : MonoBehaviour
         }
     }
 
-    void DisplayButtonState(InputSettings inputSettings)
+    void DisplayButtonState(InputConfiguration inputSettings)
     {
         StateText.text = Input.GetButton(inputSettings.Name)
             ? "[x]"
             : "[ ]";
     }
-    void DisplayAxisState(InputSettings inputSettings)
+    void DisplayAxisState(InputConfiguration inputSettings)
     {
         var input = Input.GetAxis(inputSettings.Name);
         if (input < 0)

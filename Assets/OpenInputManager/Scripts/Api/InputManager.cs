@@ -1,57 +1,41 @@
-﻿using System;
-using UnityEditor;
+﻿using System.Collections.Generic;
 
 namespace OpenInputManager
 {
-    public static class InputManager
+    public class InputManager
     {
         public const string SettingsAssetPath = "ProjectSettings/InputManager.asset";
 
-        public static event Action<string, InputManagerSettings> OnSettingsSaved;
+        public IEnumerable<InputConfiguration> Axes;
 
-        static InputManagerSettings _current = LoadFromProjectSettings();
-        public static InputManagerSettings Current { get { return _current; } }
-
-        public static SerializedObject GetSeriallizedAsset(string settingsAssetPath = SettingsAssetPath)
+        public void Save()
         {
-            var inputManager = AssetDatabase.LoadAllAssetsAtPath(settingsAssetPath)[0];
-            var serializedObject = new SerializedObject(inputManager);
-            return serializedObject;
+            SaveToAssetPath(SettingsAssetPath);
         }
-
-        public static InputManagerSettings LoadFromProjectSettings()
-        {
-            return LoadFromAsset(SettingsAssetPath);
-        }
-        public static InputManagerSettings LoadFromAsset(string settingsAssetPath)
-        {
-            var inputManagerSettings = new InputManagerSettings();
-            var mapper = Mapper.CreateUnityToModelMapper();
-
-            using (var serializedObject = GetSeriallizedAsset(settingsAssetPath))
-                mapper.Map(serializedObject, inputManagerSettings);
-
-
-            return inputManagerSettings;
-        }
-
-        public static void SaveToProjectSettings(InputManagerSettings inputManagerSettings)
-        {
-            SaveToAsset(inputManagerSettings, SettingsAssetPath);
-
-            _current = inputManagerSettings;
-
-            if (OnSettingsSaved != null)
-                OnSettingsSaved(SettingsAssetPath, inputManagerSettings);
-        }
-        public static void SaveToAsset(InputManagerSettings inputManagerSettings, string settingsAssetPath)
+        public void SaveToAssetPath(string assetPath)
         {
             var mapper = Mapper.CreateModelToUnityMapper();
-            using (var serializedObject = GetSeriallizedAsset(settingsAssetPath))
+            using (var serializedObject = AssetDatabaseHelper.LoadSerializedObjectAtPath(assetPath))
             {
-                mapper.Map(inputManagerSettings, serializedObject);
+                mapper.Map(this, serializedObject);
                 serializedObject.ApplyModifiedProperties();
             }
+        }
+
+        public static InputManager FromProjectSettings()
+        {
+            return FromAssetPath(SettingsAssetPath);
+        }
+        public static InputManager FromAssetPath(string assetPath)
+        {
+            var inputManager = new InputManager();
+            var mapper = Mapper.CreateUnityToModelMapper();
+
+            using (var serializedObject = AssetDatabaseHelper.LoadSerializedObjectAtPath(assetPath))
+                mapper.Map(serializedObject, inputManager);
+
+
+            return inputManager;
         }
     }
 }

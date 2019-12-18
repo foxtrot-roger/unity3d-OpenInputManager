@@ -1,4 +1,5 @@
-﻿using UnityEditor;
+﻿using System.Linq;
+using UnityEditor;
 using UnityEngine;
 
 namespace OpenInputManager
@@ -8,11 +9,11 @@ namespace OpenInputManager
     {
         public string AssetPath = InputManager.SettingsAssetPath;
 
-        public InputManagerSettings InputManagerSettings;
+        public InputConfiguration[] Axes;
 
         public void LoadFromProjectSettings()
         {
-            InputManagerSettings = InputManager.LoadFromProjectSettings();
+            Axes = InputManager.FromProjectSettings().Axes.ToArray();
 
             EditorUtility.SetDirty(this);
 
@@ -20,7 +21,7 @@ namespace OpenInputManager
         }
         public void SaveToProjectSettings()
         {
-            InputManager.SaveToProjectSettings(InputManagerSettings);
+            new InputManager { Axes = Axes }.Save();
 
             Debug.Log("Configuration saved to project settings.");
         }

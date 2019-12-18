@@ -5,7 +5,7 @@ namespace OpenInputManager
     public static class InputSettingsMapping
     {
         public const string NameProperty = "m_Name";
-        public const string DescriptiveProperty = "descriptiveName";
+        public const string DescriptiveNameProperty = "descriptiveName";
         public const string DescriptiveNegativeNameProperty = "descriptiveNegativeName";
         public const string NegativeButtonProperty = "negativeButton";
         public const string PositiveButtonProperty = "positiveButton";
@@ -20,12 +20,12 @@ namespace OpenInputManager
         public const string AxisNumberProperty = "axis";
         public const string JoystickNumberProperty = "joyNum";
 
-        public class ModelToUnityMapper : IMapper<InputSettings, SerializedProperty>
+        public class ModelToUnityMapper : IMapper<InputConfiguration, SerializedProperty>
         {
-            public void Map(InputSettings inputSettings, SerializedProperty serializedProperty)
+            public void Map(InputConfiguration inputSettings, SerializedProperty serializedProperty)
             {
                 serializedProperty.FindPropertyRelative(NameProperty).stringValue = inputSettings.Name;
-                serializedProperty.FindPropertyRelative(DescriptiveProperty).stringValue = inputSettings.DescriptiveName;
+                serializedProperty.FindPropertyRelative(DescriptiveNameProperty).stringValue = inputSettings.DescriptiveName;
                 serializedProperty.FindPropertyRelative(DescriptiveNegativeNameProperty).stringValue = inputSettings.DescriptiveNegativeName;
                 serializedProperty.FindPropertyRelative(NegativeButtonProperty).stringValue = inputSettings.NegativeButton;
                 serializedProperty.FindPropertyRelative(PositiveButtonProperty).stringValue = inputSettings.PositiveButton;
@@ -41,12 +41,12 @@ namespace OpenInputManager
                 serializedProperty.FindPropertyRelative(JoystickNumberProperty).intValue = (int)inputSettings.JoystickNumber;
             }
         }
-        public class UnityToModelMapper : IMapper<SerializedProperty, InputSettings>
+        public class UnityToModelMapper : IMapper<SerializedProperty, InputConfiguration>
         {
-            public void Map(SerializedProperty serializedProperty, InputSettings inputSettings)
+            public void Map(SerializedProperty serializedProperty, InputConfiguration inputSettings)
             {
                 inputSettings.Name = serializedProperty.FindPropertyRelative(NameProperty).stringValue;
-                inputSettings.DescriptiveName = serializedProperty.FindPropertyRelative(DescriptiveProperty).stringValue;
+                inputSettings.DescriptiveName = serializedProperty.FindPropertyRelative(DescriptiveNameProperty).stringValue;
                 inputSettings.DescriptiveNegativeName = serializedProperty.FindPropertyRelative(DescriptiveNegativeNameProperty).stringValue;
                 inputSettings.NegativeButton = serializedProperty.FindPropertyRelative(NegativeButtonProperty).stringValue;
                 inputSettings.PositiveButton = serializedProperty.FindPropertyRelative(PositiveButtonProperty).stringValue;

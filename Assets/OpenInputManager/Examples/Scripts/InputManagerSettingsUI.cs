@@ -3,42 +3,38 @@ using UnityEngine;
 
 public class InputManagerSettingsUI : MonoBehaviour
 {
-    InputManagerSettings InputManagerSettings;
+    InputManager InputManager;
     public GameObject InputSettingsUiPrefab;
 
     void OnEnable()
     {
-        InputManagerSettings = InputManager.LoadFromProjectSettings();
-        InputManager.OnSettingsSaved += UpdateSettings;
+        InputManager = InputManager.FromProjectSettings();
     }
-    void OnDisable()
-    {
-        InputManager.OnSettingsSaved -= UpdateSettings;
-    }
+
     void Start()
     {
-        SetModel(InputManager.LoadFromProjectSettings());
+        SetModel(InputManager.FromProjectSettings());
     }
 
-    public void SetModel(InputManagerSettings inputManagerSettings)
+    public void SetModel(InputManager inputManagerSettings)
     {
-        if (InputManagerSettings != null)
+        if (InputManager != null)
             DestroyUI();
 
-        InputManagerSettings = inputManagerSettings;
+        InputManager = inputManagerSettings;
 
-        if (InputManagerSettings != null)
+        if (InputManager != null)
             CreateUI();
     }
 
-    void UpdateSettings(string assetPath, InputManagerSettings newSettings)
+    void UpdateSettings(string assetPath, InputManager newSettings)
     {
         SetModel(newSettings);
     }
 
     void CreateUI()
     {
-        foreach (var inputSettings in InputManagerSettings.Axes)
+        foreach (var inputSettings in InputManager.Axes)
         {
             var instance = Instantiate(InputSettingsUiPrefab, transform);
             var ui = instance.GetComponent<InputSettingsUI>();
