@@ -7,12 +7,12 @@ namespace OpenInputManager
         public static IMapper<SerializedObject, InputManager> CreateUnityToModelMapper()
         {
             return new InputManagerMapping.UnityToModelMapper(
-                new InputSettingsMapping.UnityToModelMapper());
+                new InputConfigurationMapping.UnityToModelMapper());
         }
         public static IMapper<InputManager, SerializedObject> CreateModelToUnityMapper()
         {
             return new InputManagerMapping.ModelToUnityMapper(
-                new InputSettingsMapping.ModelToUnityMapper());
+                new InputConfigurationMapping.ModelToUnityMapper());
         }
 
     }

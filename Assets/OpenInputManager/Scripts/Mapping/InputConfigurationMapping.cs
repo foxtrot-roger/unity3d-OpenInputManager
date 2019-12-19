@@ -2,7 +2,7 @@
 
 namespace OpenInputManager
 {
-    public static class InputSettingsMapping
+    public static class InputConfigurationMapping
     {
         public const string NameProperty = "m_Name";
         public const string DescriptiveNameProperty = "descriptiveName";
