@@ -1,39 +1,33 @@
-﻿using System.Collections.Generic;
+﻿using OpenInputManager.Internals;
+using System.Collections.Generic;
+using UnityEditor;
 
 namespace OpenInputManager
 {
     public class InputManager
     {
-        public const string SettingsAssetPath = "ProjectSettings/InputManager.asset";
-
         public IEnumerable<InputConfiguration> Axes;
 
         public void Save()
         {
-            SaveToAssetPath(SettingsAssetPath);
-        }
-        public void SaveToAssetPath(string assetPath)
-        {
-            var mapper = Mapper.CreateModelToUnityMapper();
-            using (var serializedObject = AssetDatabaseHelper.LoadSerializedObjectAtPath(assetPath))
+            using (var serializedObject = new SerializedObject(ProjectSettings.InputManager.LoadAsset()))
             {
-                mapper.Map(this, serializedObject);
+                Mapper
+                    .CreateModelToUnityMapper()
+                    .Map(this, serializedObject);
+
                 serializedObject.ApplyModifiedProperties();
             }
         }
 
         public static InputManager FromProjectSettings()
         {
-            return FromAssetPath(SettingsAssetPath);
-        }
-        public static InputManager FromAssetPath(string assetPath)
-        {
             var inputManager = new InputManager();
-            var mapper = Mapper.CreateUnityToModelMapper();
 
-            using (var serializedObject = AssetDatabaseHelper.LoadSerializedObjectAtPath(assetPath))
-                mapper.Map(serializedObject, inputManager);
-
+            using (var serializedObject = new SerializedObject(ProjectSettings.InputManager.LoadAsset()))
+                Mapper
+                    .CreateUnityToModelMapper()
+                    .Map(serializedObject, inputManager);
 
             return inputManager;
         }

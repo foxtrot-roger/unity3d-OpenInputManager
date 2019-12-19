@@ -1,0 +1,14 @@
+{
+    "name": "OpenInputManager.Test",
+    "references": [
+        "OpenInputManager"
+    ],
+    "optionalUnityReferences": [
+        "TestAssemblies"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false
+}
