@@ -18,15 +18,6 @@ var inputManager = InputManager.FromProjectSettings();
 
 inputManager.Save();
 ```
-By default the path to the input manager settings is "ProjectSettings/InputManager.asset" in Unity but if it was to change, it is possible to still use the methods by providing the InputManager a path to the settings asset.
-```c#
-var pathToSettingsAsset = "some/new/path/to/asset";
-var inputManagerSettings = InputManager.FromAssetPath(pathToSettingsAsset);
-
-// [change settings or do something with them]
-
-inputManager.SaveToAssetPath(pathToSettingsAsset);
-```
 ### Create buttons
 #### Keyboard key
 ```c#
