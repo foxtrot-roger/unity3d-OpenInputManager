@@ -28,12 +28,6 @@ public class InputManagerSettingsUI : MonoBehaviour
             CreateUI();
     }
 
-    [Obsolete]
-    void UpdateSettings(string assetPath, InputManager newSettings)
-    {
-        SetModel(newSettings);
-    }
-
     void CreateUI()
     {
         foreach (var inputConfiguration in InputManager.Axes)
