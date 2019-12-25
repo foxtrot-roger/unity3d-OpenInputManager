@@ -1,5 +1,6 @@
 ﻿using NUnit.Framework;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
@@ -24,7 +25,7 @@ namespace OpenInputManager.Test
         public void Save_Succeeds()
         {
             // arrange
-            var axes = new InputConfiguration[] { };
+            var axes = new List<InputConfiguration> { };
             var inputManager = new InputManager { Axes = axes };
 
             // act
@@ -35,7 +36,7 @@ namespace OpenInputManager.Test
         public void Add_EnablesAxis()
         {
             // arrange
-            var axes = new InputConfiguration[] { new InputConfiguration { Name = "TestAxis" } };
+            var axes = new List<InputConfiguration> { new InputConfiguration { Name = "TestAxis" } };
             var inputManager = new InputManager { Axes = axes };
 
             // act
@@ -50,7 +51,7 @@ namespace OpenInputManager.Test
             // arrange
             var oldSettings = InputManager.FromProjectSettings();
 
-            var axes = new InputConfiguration[] { };
+            var axes = new List<InputConfiguration> { };
             var inputManager = new InputManager { Axes = axes };
 
             // act
@@ -161,7 +162,7 @@ namespace OpenInputManager.Test
                 snap: true,
                 invert: true);
 
-            var axes = new InputConfiguration[] { inputSettings };
+            var axes = new List<InputConfiguration> { inputSettings };
             var inputManager = new InputManager { Axes = axes };
 
             // act
@@ -170,7 +171,7 @@ namespace OpenInputManager.Test
             var newAxes = newSettings.Axes.ToArray();
 
             Assert.AreEqual(axes.Count(), newAxes.Length);
-            for (int i = 0; i < axes.Length; i++)
+            for (int i = 0; i < axes.Count; i++)
                 AssertAreEquivalent(axes[i], newAxes[i]);
         }
 

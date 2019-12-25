@@ -6,7 +6,7 @@ namespace OpenInputManager
 {
     public class InputManager
     {
-        public IEnumerable<InputConfiguration> Axes;
+        public List<InputConfiguration> Axes;
 
         public void Save()
         {

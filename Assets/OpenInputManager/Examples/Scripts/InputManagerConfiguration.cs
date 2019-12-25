@@ -1,4 +1,5 @@
 ﻿using OpenInputManager;
+using System.Collections.Generic;
 using System.Linq;
 using UnityEditor;
 using UnityEngine;
@@ -6,11 +7,11 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Project Settings/Input Manager Configuration")]
 public class InputManagerConfiguration : ScriptableObject
 {
-    public InputConfiguration[] Axes;
+    public List<InputConfiguration> Axes;
 
     public void LoadFromProjectSettings()
     {
-        Axes = InputManager.FromProjectSettings().Axes.ToArray();
+        Axes = InputManager.FromProjectSettings().Axes;
 
         EditorUtility.SetDirty(this);
 
