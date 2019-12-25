@@ -11,27 +11,27 @@ namespace OpenInputManager
 
         public static string JoystickButtonName(
             JoystickNumber joystickNumber,
-            JoystickButton? joystickButtonNumber,
+            JoystickButton? joystickButton,
             string joystickName = UnityJoystickName,
             string joystickButtonName = UnityJoystickButtonName)
         {
-            return joystickButtonNumber == null
+            return joystickButton == null
                 ? null
-                : JoystickButtonName(joystickNumber, (JoystickButton)joystickButtonNumber, joystickName, joystickButtonName);
+                : JoystickButtonName(joystickNumber, (JoystickButton)joystickButton, joystickName, joystickButtonName);
         }
         public static string JoystickButtonName(
             JoystickNumber joystickNumber,
-            JoystickButton joystickButtonNumber,
+            JoystickButton joystickButton,
             string joystickName = UnityJoystickName,
             string joystickButtonName = UnityJoystickButtonName)
         {
-            return JoystickName(joystickNumber, joystickName) + " " + JoystickButtonName(joystickButtonNumber, joystickButtonName);
+            return JoystickName(joystickNumber, joystickName) + " " + JoystickButtonName(joystickButton, joystickButtonName);
         }
         public static string JoystickButtonName(
-            JoystickButton joystickButtonNumber,
+            JoystickButton joystickButton,
             string joystickButtonName = UnityJoystickButtonName)
         {
-            return joystickButtonName + " " + (int)joystickButtonNumber;
+            return joystickButtonName + " " + (int)joystickButton;
         }
         public static string JoystickName(
             JoystickNumber joystickNumber,
@@ -45,40 +45,40 @@ namespace OpenInputManager
         }
 
         public static string MouseButtonName(
-            MouseButton? mouseButtonNumber,
+            MouseButton? mouseButton,
             string mouseButtonName = UnityMouseButtonName)
         {
-            return mouseButtonNumber == null
+            return mouseButton == null
                 ? null
-                : MouseButtonName((MouseButton)mouseButtonNumber, mouseButtonName);
+                : MouseButtonName((MouseButton)mouseButton, mouseButtonName);
         }
         public static string MouseButtonName(
-            MouseButton mouseButtonNumber,
+            MouseButton mouseButton,
             string mouseButtonName = UnityMouseButtonName)
         {
-            return mouseButtonName + " " + (int)mouseButtonNumber;
+            return mouseButtonName + " " + (int)mouseButton;
         }
 
 
         public const int UnityJoystickButtonCount = KeyCode.Joystick2Button0 - KeyCode.Joystick1Button0;
-        public static KeyCode UnityKeyCode(this MouseButton mouseButtonNumber)
+        public static KeyCode UnityKeyCode(this MouseButton mouseButton)
         {
-            if (mouseButtonNumber > MouseButton.Mouse6)
+            if (mouseButton > MouseButton.Mouse6)
                 throw new NotSupportedException("KeyCode for mouse button is only supported up to mouse button 6.");
 
             else
-                return KeyCode.Mouse0 + (int)mouseButtonNumber;
+                return KeyCode.Mouse0 + (int)mouseButton;
         }
-        public static KeyCode UnityKeyCode(JoystickNumber joystickNumber, JoystickButton joystickButtonNumber)
+        public static KeyCode UnityKeyCode(JoystickNumber joystickNumber, JoystickButton joystickButton)
         {
             if (joystickNumber > JoystickNumber.Joystick8)
                 throw new NotSupportedException("KeyCode for joystick button is only supported up to joystick 8.");
 
-            else if ((int)joystickButtonNumber > UnityJoystickButtonCount)
+            else if ((int)joystickButton > UnityJoystickButtonCount)
                 throw new NotSupportedException("KeyCode for joystick button is only supported up to button " + UnityJoystickButtonCount + ".");
 
             else
-                return KeyCode.JoystickButton0 + ((int)joystickButtonNumber * UnityJoystickButtonCount) + (int)joystickButtonNumber;
+                return KeyCode.JoystickButton0 + ((int)joystickButton * UnityJoystickButtonCount) + (int)joystickButton;
         }
     }
 }

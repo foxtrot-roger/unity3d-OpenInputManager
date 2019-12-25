@@ -1,4 +1,5 @@
 ﻿using OpenInputManager;
+using System;
 using UnityEngine;
 
 public class InputManagerSettingsUI : MonoBehaviour
@@ -16,17 +17,18 @@ public class InputManagerSettingsUI : MonoBehaviour
         SetModel(InputManager.FromProjectSettings());
     }
 
-    public void SetModel(InputManager inputManagerSettings)
+    public void SetModel(InputManager inputManager)
     {
         if (InputManager != null)
             DestroyUI();
 
-        InputManager = inputManagerSettings;
+        InputManager = inputManager;
 
         if (InputManager != null)
             CreateUI();
     }
 
+    [Obsolete]
     void UpdateSettings(string assetPath, InputManager newSettings)
     {
         SetModel(newSettings);

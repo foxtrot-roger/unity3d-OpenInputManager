@@ -186,17 +186,17 @@
         public static InputConfiguration SetPositiveButton(
             this InputConfiguration inputConfiguration,
             JoystickNumber joystickNumber,
-            JoystickButton? joystickButtonNumber)
+            JoystickButton? joystickButton)
         {
             return inputConfiguration
-                .SetPositiveButton(UnityButtonNameFormat.JoystickButtonName(joystickNumber, joystickButtonNumber));
+                .SetPositiveButton(UnityButtonNameFormat.JoystickButtonName(joystickNumber, joystickButton));
         }
         public static InputConfiguration SetPositiveButton(
             this InputConfiguration inputConfiguration,
-            MouseButton? mouseButtonNumber)
+            MouseButton? mouseButton)
         {
             return inputConfiguration
-                .SetPositiveButton(UnityButtonNameFormat.MouseButtonName(mouseButtonNumber));
+                .SetPositiveButton(UnityButtonNameFormat.MouseButtonName(mouseButton));
         }
 
         public static InputConfiguration SetAltPositiveButton(
@@ -209,17 +209,17 @@
         public static InputConfiguration SetAltPositiveButton(
             this InputConfiguration inputConfiguration,
             JoystickNumber joystickNumber,
-            JoystickButton? joystickButtonNumber)
+            JoystickButton? joystickButton)
         {
             return inputConfiguration
-                .SetAltPositiveButton(UnityButtonNameFormat.JoystickButtonName(joystickNumber, joystickButtonNumber));
+                .SetAltPositiveButton(UnityButtonNameFormat.JoystickButtonName(joystickNumber, joystickButton));
         }
         public static InputConfiguration SetAltPositiveButton(
             this InputConfiguration inputConfiguration,
-            MouseButton? mouseButtonNumber)
+            MouseButton? mouseButton)
         {
             return inputConfiguration
-                .SetAltPositiveButton(UnityButtonNameFormat.MouseButtonName(mouseButtonNumber));
+                .SetAltPositiveButton(UnityButtonNameFormat.MouseButtonName(mouseButton));
         }
 
         public static InputConfiguration SetNegativeButton(
@@ -232,17 +232,17 @@
         public static InputConfiguration SetNegativeButton(
             this InputConfiguration inputConfiguration,
             JoystickNumber joystickNumber,
-            JoystickButton? joystickButtonNumber)
+            JoystickButton? joystickButton)
         {
             return inputConfiguration
-                .SetNegativeButton(UnityButtonNameFormat.JoystickButtonName(joystickNumber, joystickButtonNumber));
+                .SetNegativeButton(UnityButtonNameFormat.JoystickButtonName(joystickNumber, joystickButton));
         }
         public static InputConfiguration SetNegativeButton(
             this InputConfiguration inputConfiguration,
-            MouseButton? mouseButtonNumber)
+            MouseButton? mouseButton)
         {
             return inputConfiguration
-                .SetNegativeButton(UnityButtonNameFormat.MouseButtonName(mouseButtonNumber));
+                .SetNegativeButton(UnityButtonNameFormat.MouseButtonName(mouseButton));
         }
 
         public static InputConfiguration SetAltNegativeButton(
@@ -255,17 +255,17 @@
         public static InputConfiguration SetAltNegativeButton(
             this InputConfiguration inputConfiguration,
             JoystickNumber joystickNumber,
-            JoystickButton? joystickButtonNumber)
+            JoystickButton? joystickButton)
         {
             return inputConfiguration
-                .SetAltNegativeButton(UnityButtonNameFormat.JoystickButtonName(joystickNumber, joystickButtonNumber));
+                .SetAltNegativeButton(UnityButtonNameFormat.JoystickButtonName(joystickNumber, joystickButton));
         }
         public static InputConfiguration SetAltNegativeButton(
             this InputConfiguration inputConfiguration,
-            MouseButton? mouseButtonNumber)
+            MouseButton? mouseButton)
         {
             return inputConfiguration
-                .SetAltNegativeButton(UnityButtonNameFormat.MouseButtonName(mouseButtonNumber));
+                .SetAltNegativeButton(UnityButtonNameFormat.MouseButtonName(mouseButton));
         }
     }
 }
