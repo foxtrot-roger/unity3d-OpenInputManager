@@ -34,11 +34,11 @@ public class InputManagerSettingsUI : MonoBehaviour
 
     void CreateUI()
     {
-        foreach (var inputSettings in InputManager.Axes)
+        foreach (var inputConfiguration in InputManager.Axes)
         {
             var instance = Instantiate(InputSettingsUiPrefab, transform);
             var ui = instance.GetComponent<InputSettingsUI>();
-            ui.SetModel(inputSettings);
+            ui.SetModel(inputConfiguration);
         }
     }
 

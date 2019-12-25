@@ -66,103 +66,103 @@ namespace OpenInputManager.Test
         public void SaveAndLoadKeyboardButton_Succeeds()
         {
             // arrange
-            var inputSettings = new InputConfiguration()
+            var inputConfiguration = new InputConfiguration()
                 .ConfigureInfo("TestAxis", "DescriptiveName", "DescriptiveNegativeName")
                 .ConfigureButton("left", "a");
 
             // act & assert
-            AssertSaveAndLoadAreEquivalent(inputSettings);
+            AssertSaveAndLoadAreEquivalent(inputConfiguration);
         }
         [Test]
         public void SaveAndLoadMouseButton_Succeeds()
         {
             // arrange
-            var inputSettings = new InputConfiguration()
+            var inputConfiguration = new InputConfiguration()
                 .ConfigureInfo("TestAxis", "DescriptiveName", "DescriptiveNegativeName")
                 .ConfigureButton(MouseButton.Mouse1, MouseButton.Mouse2);
 
             // act & assert
-            AssertSaveAndLoadAreEquivalent(inputSettings);
+            AssertSaveAndLoadAreEquivalent(inputConfiguration);
         }
         [Test]
         public void SaveAndLoadJoystickButton_Succeeds()
         {
             // arrange
-            var inputSettings = new InputConfiguration()
+            var inputConfiguration = new InputConfiguration()
                 .ConfigureInfo("TestAxis", "DescriptiveName", "DescriptiveNegativeName")
                 .ConfigureButton(JoystickNumber.Joystick1, JoystickButton.Button1, JoystickButton.Button10);
 
             // act & assert
-            AssertSaveAndLoadAreEquivalent(inputSettings);
+            AssertSaveAndLoadAreEquivalent(inputConfiguration);
         }
 
         [Test]
         public void SaveAndLoadKeyboardButtonAxis_Succeeds()
         {
             // arrange
-            var inputSettings = new InputConfiguration()
+            var inputConfiguration = new InputConfiguration()
                 .ConfigureInfo("TestAxis", "DescriptiveName", "DescriptiveNegativeName")
                 .ConfigureButtonAxis("right", "left", "a", "d");
 
             // act & assert
-            AssertSaveAndLoadAreEquivalent(inputSettings);
+            AssertSaveAndLoadAreEquivalent(inputConfiguration);
         }
         [Test]
         public void SaveAndLoadMouseButtonAxis_Succeeds()
         {
             // arrange
-            var inputSettings = new InputConfiguration()
+            var inputConfiguration = new InputConfiguration()
                 .ConfigureInfo("TestAxis", "DescriptiveName", "DescriptiveNegativeName")
                 .ConfigureButtonAxis(MouseButton.Mouse2, MouseButton.Mouse1, MouseButton.Mouse4, MouseButton.Mouse3);
 
             // act & assert
-            AssertSaveAndLoadAreEquivalent(inputSettings);
+            AssertSaveAndLoadAreEquivalent(inputConfiguration);
         }
         [Test]
         public void SaveAndLoadJoystickButtonAxis_Succeeds()
         {
             // arrange
-            var inputSettings = new InputConfiguration()
+            var inputConfiguration = new InputConfiguration()
                 .ConfigureInfo("TestAxis", "DescriptiveName", "DescriptiveNegativeName")
                 .ConfigureButtonAxis(JoystickNumber.Joystick1, JoystickButton.Button10, JoystickButton.Button1, JoystickButton.Button12, JoystickButton.Button11);
 
             // act & assert
-            AssertSaveAndLoadAreEquivalent(inputSettings);
+            AssertSaveAndLoadAreEquivalent(inputConfiguration);
         }
 
         [Test]
         public void SaveAndLoadJoystickAxis_Succeeds()
         {
             // arrange
-            var inputSettings = new InputConfiguration()
+            var inputConfiguration = new InputConfiguration()
                 .ConfigureInfo("TestAxis", "DescriptiveName", "DescriptiveNegativeName")
                 .ConfigureJoystickAxis(JoystickNumber.Joystick1, AxisNumber.AxisY);
 
             // act & assert
-            AssertSaveAndLoadAreEquivalent(inputSettings);
+            AssertSaveAndLoadAreEquivalent(inputConfiguration);
         }
         [Test]
         public void SaveAndLoadMouseMovement_Succeeds()
         {
             // arrange
-            var inputSettings = new InputConfiguration()
+            var inputConfiguration = new InputConfiguration()
                 .ConfigureInfo("TestAxis", "DescriptiveName", "DescriptiveNegativeName")
                 .ConfigureMouseMovement(AxisNumber.Axis3OrScrollwhell);
 
             // act & assert
-            AssertSaveAndLoadAreEquivalent(inputSettings);
+            AssertSaveAndLoadAreEquivalent(inputConfiguration);
         }
 
-        void AssertSaveAndLoadAreEquivalent(InputConfiguration inputSettings)
+        void AssertSaveAndLoadAreEquivalent(InputConfiguration inputConfiguration)
         {
             // arrange
-            inputSettings.Configure(
+            inputConfiguration.Configure(
                 gravity: 5,
                 sensitivity: 0.5f,
                 snap: true,
                 invert: true);
 
-            var axes = new List<InputConfiguration> { inputSettings };
+            var axes = new List<InputConfiguration> { inputConfiguration };
             var inputManager = new InputManager { Axes = axes };
 
             // act

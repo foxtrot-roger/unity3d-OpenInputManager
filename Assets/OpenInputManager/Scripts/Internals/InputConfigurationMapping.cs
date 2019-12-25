@@ -22,44 +22,44 @@ namespace OpenInputManager.Internals
 
         public class ModelToUnityMapper : IMapper<InputConfiguration, SerializedProperty>
         {
-            public void Map(InputConfiguration inputSettings, SerializedProperty serializedProperty)
+            public void Map(InputConfiguration inputConfiguration, SerializedProperty serializedProperty)
             {
-                serializedProperty.Set(m_Name, inputSettings.Name);
-                serializedProperty.Set(descriptiveName, inputSettings.DescriptiveName);
-                serializedProperty.Set(descriptiveNegativeName, inputSettings.DescriptiveNegativeName);
-                serializedProperty.Set(negativeButton, inputSettings.NegativeButton);
-                serializedProperty.Set(positiveButton, inputSettings.PositiveButton);
-                serializedProperty.Set(altNegativeButton, inputSettings.AltNegativeButton);
-                serializedProperty.Set(altPositiveButton, inputSettings.AltPositiveButton);
-                serializedProperty.Set(gravity, inputSettings.Gravity);
-                serializedProperty.Set(dead, inputSettings.Dead);
-                serializedProperty.Set(sensitivity, inputSettings.Sensitivity);
-                serializedProperty.Set(snap, inputSettings.Snap);
-                serializedProperty.Set(invert, inputSettings.Invert);
-                serializedProperty.Set(type, (int)inputSettings.AxisType);
-                serializedProperty.Set(axis, (int)inputSettings.AxisNumber);
-                serializedProperty.Set(joyNum, (int)inputSettings.JoystickNumber);
+                serializedProperty.Set(m_Name, inputConfiguration.Name);
+                serializedProperty.Set(descriptiveName, inputConfiguration.DescriptiveName);
+                serializedProperty.Set(descriptiveNegativeName, inputConfiguration.DescriptiveNegativeName);
+                serializedProperty.Set(negativeButton, inputConfiguration.NegativeButton);
+                serializedProperty.Set(positiveButton, inputConfiguration.PositiveButton);
+                serializedProperty.Set(altNegativeButton, inputConfiguration.AltNegativeButton);
+                serializedProperty.Set(altPositiveButton, inputConfiguration.AltPositiveButton);
+                serializedProperty.Set(gravity, inputConfiguration.Gravity);
+                serializedProperty.Set(dead, inputConfiguration.Dead);
+                serializedProperty.Set(sensitivity, inputConfiguration.Sensitivity);
+                serializedProperty.Set(snap, inputConfiguration.Snap);
+                serializedProperty.Set(invert, inputConfiguration.Invert);
+                serializedProperty.Set(type, (int)inputConfiguration.AxisType);
+                serializedProperty.Set(axis, (int)inputConfiguration.AxisNumber);
+                serializedProperty.Set(joyNum, (int)inputConfiguration.JoystickNumber);
             }
         }
         public class UnityToModelMapper : IMapper<SerializedProperty, InputConfiguration>
         {
-            public void Map(SerializedProperty serializedProperty, InputConfiguration inputSettings)
+            public void Map(SerializedProperty serializedProperty, InputConfiguration inputConfiguration)
             {
-                inputSettings.Name = serializedProperty.Get(m_Name);
-                inputSettings.DescriptiveName = serializedProperty.Get(descriptiveName);
-                inputSettings.DescriptiveNegativeName = serializedProperty.Get(descriptiveNegativeName);
-                inputSettings.NegativeButton = serializedProperty.Get(negativeButton);
-                inputSettings.PositiveButton = serializedProperty.Get(positiveButton);
-                inputSettings.AltNegativeButton = serializedProperty.Get(altNegativeButton);
-                inputSettings.AltPositiveButton = serializedProperty.Get(altPositiveButton);
-                inputSettings.Gravity = serializedProperty.Get(gravity);
-                inputSettings.Dead = serializedProperty.Get(dead);
-                inputSettings.Sensitivity = serializedProperty.Get(sensitivity);
-                inputSettings.Snap = serializedProperty.Get(snap);
-                inputSettings.Invert = serializedProperty.Get(invert);
-                inputSettings.AxisType = (AxisType)serializedProperty.Get(type);
-                inputSettings.AxisNumber = (AxisNumber)serializedProperty.Get(axis);
-                inputSettings.JoystickNumber = (JoystickNumber)serializedProperty.Get(joyNum);
+                inputConfiguration.Name = serializedProperty.Get(m_Name);
+                inputConfiguration.DescriptiveName = serializedProperty.Get(descriptiveName);
+                inputConfiguration.DescriptiveNegativeName = serializedProperty.Get(descriptiveNegativeName);
+                inputConfiguration.NegativeButton = serializedProperty.Get(negativeButton);
+                inputConfiguration.PositiveButton = serializedProperty.Get(positiveButton);
+                inputConfiguration.AltNegativeButton = serializedProperty.Get(altNegativeButton);
+                inputConfiguration.AltPositiveButton = serializedProperty.Get(altPositiveButton);
+                inputConfiguration.Gravity = serializedProperty.Get(gravity);
+                inputConfiguration.Dead = serializedProperty.Get(dead);
+                inputConfiguration.Sensitivity = serializedProperty.Get(sensitivity);
+                inputConfiguration.Snap = serializedProperty.Get(snap);
+                inputConfiguration.Invert = serializedProperty.Get(invert);
+                inputConfiguration.AxisType = (AxisType)serializedProperty.Get(type);
+                inputConfiguration.AxisNumber = (AxisNumber)serializedProperty.Get(axis);
+                inputConfiguration.JoystickNumber = (JoystickNumber)serializedProperty.Get(joyNum);
             }
         }
     }

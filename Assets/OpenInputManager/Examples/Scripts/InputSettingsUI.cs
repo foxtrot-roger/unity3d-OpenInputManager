@@ -10,14 +10,14 @@ public class InputSettingsUI : MonoBehaviour
     public Text StateText;
     Action<InputConfiguration> UpdateUI;
 
-    public void SetModel(InputConfiguration inputSettings)
+    public void SetModel(InputConfiguration inputConfiguration)
     {
-        InputSettings = inputSettings;
-        NameText.text = inputSettings.Name;
-        switch (inputSettings.AxisType)
+        InputSettings = inputConfiguration;
+        NameText.text = inputConfiguration.Name;
+        switch (inputConfiguration.AxisType)
         {
             case AxisType.KeyOrMouseButton:
-                if (string.IsNullOrEmpty(inputSettings.NegativeButton))
+                if (string.IsNullOrEmpty(inputConfiguration.NegativeButton))
                     UpdateUI = DisplayButtonState;
                 else
                     UpdateUI = DisplayAxisState;
@@ -33,15 +33,15 @@ public class InputSettingsUI : MonoBehaviour
         }
     }
 
-    void DisplayButtonState(InputConfiguration inputSettings)
+    void DisplayButtonState(InputConfiguration inputConfiguration)
     {
-        StateText.text = Input.GetButton(inputSettings.Name)
+        StateText.text = Input.GetButton(inputConfiguration.Name)
             ? "[x]"
             : "[ ]";
     }
-    void DisplayAxisState(InputConfiguration inputSettings)
+    void DisplayAxisState(InputConfiguration inputConfiguration)
     {
-        var input = Input.GetAxis(inputSettings.Name);
+        var input = Input.GetAxis(inputConfiguration.Name);
         if (input < 0)
             StateText.text = "[-]";
         else if (input == 0)

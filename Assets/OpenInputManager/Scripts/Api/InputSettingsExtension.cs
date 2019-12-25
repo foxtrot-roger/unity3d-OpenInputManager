@@ -2,7 +2,7 @@
 {
     public static class InputSettingsExtension
     {
-        public static InputConfiguration Configure(this InputConfiguration inputSettings,
+        public static InputConfiguration Configure(this InputConfiguration inputConfiguration,
             string name = null,
             string descriptiveName = null,
             string descriptiveNegativeName = null,
@@ -19,80 +19,80 @@
             AxisNumber? axisNumber = null,
             JoystickNumber? joystickNumber = null)
         {
-            inputSettings.Name = name ?? inputSettings.Name;
-            inputSettings.DescriptiveName = descriptiveName ?? inputSettings.DescriptiveName;
-            inputSettings.DescriptiveNegativeName = descriptiveNegativeName ?? inputSettings.DescriptiveNegativeName;
+            inputConfiguration.Name = name ?? inputConfiguration.Name;
+            inputConfiguration.DescriptiveName = descriptiveName ?? inputConfiguration.DescriptiveName;
+            inputConfiguration.DescriptiveNegativeName = descriptiveNegativeName ?? inputConfiguration.DescriptiveNegativeName;
 
-            inputSettings.NegativeButton = negativeButton ?? inputSettings.NegativeButton;
-            inputSettings.PositiveButton = positiveButton ?? inputSettings.PositiveButton;
-            inputSettings.AltNegativeButton = altNegativeButton ?? inputSettings.AltNegativeButton;
-            inputSettings.AltPositiveButton = altPositiveButton ?? inputSettings.AltPositiveButton;
+            inputConfiguration.NegativeButton = negativeButton ?? inputConfiguration.NegativeButton;
+            inputConfiguration.PositiveButton = positiveButton ?? inputConfiguration.PositiveButton;
+            inputConfiguration.AltNegativeButton = altNegativeButton ?? inputConfiguration.AltNegativeButton;
+            inputConfiguration.AltPositiveButton = altPositiveButton ?? inputConfiguration.AltPositiveButton;
 
-            inputSettings.Gravity = gravity ?? inputSettings.Gravity;
-            inputSettings.Dead = dead ?? inputSettings.Dead;
-            inputSettings.Sensitivity = sensitivity ?? inputSettings.Sensitivity;
-            inputSettings.Snap = snap ?? inputSettings.Snap;
-            inputSettings.Invert = invert ?? inputSettings.Invert;
+            inputConfiguration.Gravity = gravity ?? inputConfiguration.Gravity;
+            inputConfiguration.Dead = dead ?? inputConfiguration.Dead;
+            inputConfiguration.Sensitivity = sensitivity ?? inputConfiguration.Sensitivity;
+            inputConfiguration.Snap = snap ?? inputConfiguration.Snap;
+            inputConfiguration.Invert = invert ?? inputConfiguration.Invert;
 
-            inputSettings.AxisType = axisType ?? inputSettings.AxisType;
-            inputSettings.AxisNumber = axisNumber ?? inputSettings.AxisNumber;
-            inputSettings.JoystickNumber = joystickNumber ?? inputSettings.JoystickNumber;
+            inputConfiguration.AxisType = axisType ?? inputConfiguration.AxisType;
+            inputConfiguration.AxisNumber = axisNumber ?? inputConfiguration.AxisNumber;
+            inputConfiguration.JoystickNumber = joystickNumber ?? inputConfiguration.JoystickNumber;
 
-            return inputSettings;
+            return inputConfiguration;
         }
 
         public static InputConfiguration ConfigureInfo(
-            this InputConfiguration inputSettings,
+            this InputConfiguration inputConfiguration,
             string name,
             string descriptiveName = null,
             string descriptiveNegativeName = null)
         {
-            return inputSettings.Configure(
+            return inputConfiguration.Configure(
                 name: name,
                 descriptiveName: descriptiveName,
                 descriptiveNegativeName: descriptiveNegativeName);
         }
 
         public static InputConfiguration ConfigureButton(
-            this InputConfiguration inputSettings,
+            this InputConfiguration inputConfiguration,
             string positiveButton,
             string altPositiveButton = null)
         {
-            return inputSettings
+            return inputConfiguration
                 .SetTypeKeyOrMouseButton()
                 .SetPositiveButton(positiveButton)
                 .SetAltPositiveButton(altPositiveButton);
         }
         public static InputConfiguration ConfigureButton(
-            this InputConfiguration inputSettings,
+            this InputConfiguration inputConfiguration,
             JoystickNumber joystickNumber,
             JoystickButton positiveJoystickButton,
             JoystickButton? altPositiveJoystickButton = null)
         {
-            return inputSettings
+            return inputConfiguration
                 .SetTypeKeyOrMouseButton()
                 .SetPositiveButton(joystickNumber, positiveJoystickButton)
                 .SetAltPositiveButton(joystickNumber, altPositiveJoystickButton);
         }
         public static InputConfiguration ConfigureButton(
-            this InputConfiguration inputSettings,
+            this InputConfiguration inputConfiguration,
             MouseButton positiveButton,
             MouseButton? altPositiveButton = null)
         {
-            return inputSettings
+            return inputConfiguration
                 .SetTypeKeyOrMouseButton()
                 .SetPositiveButton(positiveButton)
                 .SetAltPositiveButton(altPositiveButton);
         }
 
         public static InputConfiguration ConfigureButtonAxis(
-            this InputConfiguration inputSettings,
+            this InputConfiguration inputConfiguration,
             string negativeButton,
             string positiveButton,
             string altPositiveButton = null,
             string altNegativeButton = null)
         {
-            return inputSettings
+            return inputConfiguration
                 .SetTypeKeyOrMouseButton()
                 .SetPositiveButton(positiveButton)
                 .SetAltPositiveButton(altPositiveButton)
@@ -100,14 +100,14 @@
                 .SetAltNegativeButton(altNegativeButton);
         }
         public static InputConfiguration ConfigureButtonAxis(
-            this InputConfiguration inputSettings,
+            this InputConfiguration inputConfiguration,
             JoystickNumber joystickNumber,
             JoystickButton negativeButton,
             JoystickButton positiveButton,
             JoystickButton? altNegativeButton = null,
             JoystickButton? altPositiveButton = null)
         {
-            return inputSettings
+            return inputConfiguration
                 .SetTypeKeyOrMouseButton()
                 .SetPositiveButton(joystickNumber, positiveButton)
                 .SetAltPositiveButton(joystickNumber, altPositiveButton)
@@ -115,13 +115,13 @@
                 .SetAltNegativeButton(joystickNumber, altNegativeButton);
         }
         public static InputConfiguration ConfigureButtonAxis(
-            this InputConfiguration inputSettings,
+            this InputConfiguration inputConfiguration,
             MouseButton negativeButton,
             MouseButton positiveButton,
             MouseButton? altNegativeButton = null,
             MouseButton? altPositiveButton = null)
         {
-            return inputSettings
+            return inputConfiguration
                 .SetTypeKeyOrMouseButton()
                 .SetPositiveButton(positiveButton)
                 .SetAltPositiveButton(altPositiveButton)
@@ -130,46 +130,46 @@
         }
 
         public static InputConfiguration ConfigureMouseMovement(
-            this InputConfiguration inputSettings,
+            this InputConfiguration inputConfiguration,
             AxisNumber axisNumber)
         {
-            return inputSettings
+            return inputConfiguration
                 .SetTypeMouseMovement(axisNumber);
         }
 
         public static InputConfiguration ConfigureJoystickAxis(
-            this InputConfiguration inputSettings,
+            this InputConfiguration inputConfiguration,
             JoystickNumber joystickNumber,
             AxisNumber axisNumber)
         {
-            return inputSettings
+            return inputConfiguration
                 .SetTypeJoystickAxis(joystickNumber, axisNumber);
         }
 
         public static InputConfiguration SetTypeKeyOrMouseButton(
-            this InputConfiguration inputSettings)
+            this InputConfiguration inputConfiguration)
         {
-            return inputSettings.Configure(
+            return inputConfiguration.Configure(
                 axisType: AxisType.KeyOrMouseButton,
                 axisNumber: AxisNumber.AxisX,
                 joystickNumber: JoystickNumber.AllJoysticks);
         }
         public static InputConfiguration SetTypeJoystickAxis(
-            this InputConfiguration inputSettings,
+            this InputConfiguration inputConfiguration,
             JoystickNumber joystickNumber,
             AxisNumber axisNumber)
         {
-            return inputSettings.Configure(
+            return inputConfiguration.Configure(
                 axisType: AxisType.JoystickAxis,
                 joystickNumber: joystickNumber,
                 axisNumber: axisNumber,
                 sensitivity: 1);
         }
         public static InputConfiguration SetTypeMouseMovement(
-            this InputConfiguration inputSettings,
+            this InputConfiguration inputConfiguration,
             AxisNumber axisNumber)
         {
-            return inputSettings.Configure(
+            return inputConfiguration.Configure(
                 axisType: AxisType.MouseMovement,
                 joystickNumber: JoystickNumber.AllJoysticks,
                 axisNumber: axisNumber,
@@ -177,94 +177,94 @@
         }
 
         public static InputConfiguration SetPositiveButton(
-            this InputConfiguration inputSettings,
+            this InputConfiguration inputConfiguration,
             string positiveButton)
         {
-            return inputSettings
+            return inputConfiguration
                 .Configure(positiveButton: positiveButton);
         }
         public static InputConfiguration SetPositiveButton(
-            this InputConfiguration inputSettings,
+            this InputConfiguration inputConfiguration,
             JoystickNumber joystickNumber,
             JoystickButton? joystickButtonNumber)
         {
-            return inputSettings
+            return inputConfiguration
                 .SetPositiveButton(UnityButtonNameFormat.JoystickButtonName(joystickNumber, joystickButtonNumber));
         }
         public static InputConfiguration SetPositiveButton(
-            this InputConfiguration inputSettings,
+            this InputConfiguration inputConfiguration,
             MouseButton? mouseButtonNumber)
         {
-            return inputSettings
+            return inputConfiguration
                 .SetPositiveButton(UnityButtonNameFormat.MouseButtonName(mouseButtonNumber));
         }
 
         public static InputConfiguration SetAltPositiveButton(
-            this InputConfiguration inputSettings,
+            this InputConfiguration inputConfiguration,
             string positiveButton)
         {
-            return inputSettings
+            return inputConfiguration
                 .Configure(altPositiveButton: positiveButton);
         }
         public static InputConfiguration SetAltPositiveButton(
-            this InputConfiguration inputSettings,
+            this InputConfiguration inputConfiguration,
             JoystickNumber joystickNumber,
             JoystickButton? joystickButtonNumber)
         {
-            return inputSettings
+            return inputConfiguration
                 .SetAltPositiveButton(UnityButtonNameFormat.JoystickButtonName(joystickNumber, joystickButtonNumber));
         }
         public static InputConfiguration SetAltPositiveButton(
-            this InputConfiguration inputSettings,
+            this InputConfiguration inputConfiguration,
             MouseButton? mouseButtonNumber)
         {
-            return inputSettings
+            return inputConfiguration
                 .SetAltPositiveButton(UnityButtonNameFormat.MouseButtonName(mouseButtonNumber));
         }
 
         public static InputConfiguration SetNegativeButton(
-            this InputConfiguration inputSettings,
+            this InputConfiguration inputConfiguration,
             string negativeButton)
         {
-            return inputSettings
+            return inputConfiguration
                 .Configure(negativeButton: negativeButton);
         }
         public static InputConfiguration SetNegativeButton(
-            this InputConfiguration inputSettings,
+            this InputConfiguration inputConfiguration,
             JoystickNumber joystickNumber,
             JoystickButton? joystickButtonNumber)
         {
-            return inputSettings
+            return inputConfiguration
                 .SetNegativeButton(UnityButtonNameFormat.JoystickButtonName(joystickNumber, joystickButtonNumber));
         }
         public static InputConfiguration SetNegativeButton(
-            this InputConfiguration inputSettings,
+            this InputConfiguration inputConfiguration,
             MouseButton? mouseButtonNumber)
         {
-            return inputSettings
+            return inputConfiguration
                 .SetNegativeButton(UnityButtonNameFormat.MouseButtonName(mouseButtonNumber));
         }
 
         public static InputConfiguration SetAltNegativeButton(
-            this InputConfiguration inputSettings,
+            this InputConfiguration inputConfiguration,
             string negativeButton)
         {
-            return inputSettings
+            return inputConfiguration
                 .Configure(altNegativeButton: negativeButton);
         }
         public static InputConfiguration SetAltNegativeButton(
-            this InputConfiguration inputSettings,
+            this InputConfiguration inputConfiguration,
             JoystickNumber joystickNumber,
             JoystickButton? joystickButtonNumber)
         {
-            return inputSettings
+            return inputConfiguration
                 .SetAltNegativeButton(UnityButtonNameFormat.JoystickButtonName(joystickNumber, joystickButtonNumber));
         }
         public static InputConfiguration SetAltNegativeButton(
-            this InputConfiguration inputSettings,
+            this InputConfiguration inputConfiguration,
             MouseButton? mouseButtonNumber)
         {
-            return inputSettings
+            return inputConfiguration
                 .SetAltNegativeButton(UnityButtonNameFormat.MouseButtonName(mouseButtonNumber));
         }
     }
