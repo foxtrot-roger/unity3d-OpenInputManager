@@ -1,7 +1,8 @@
 {
     "name": "OpenInputManager.Test",
     "references": [
-        "OpenInputManager"
+        "OpenInputManager",
+        "OpenInputManager.Editor"
     ],
     "optionalUnityReferences": [
         "TestAssemblies"

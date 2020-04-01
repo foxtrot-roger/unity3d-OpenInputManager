@@ -1,0 +1,10 @@
+{
+    "name": "OpenInputManager.Editor",
+    "references": [
+        "OpenInputManager"
+    ],
+    "optionalUnityReferences": [],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false
+}
