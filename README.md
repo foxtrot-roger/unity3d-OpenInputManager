@@ -1,6 +1,12 @@
 ## Overview
 __OpenInputManager__ allows you to load and save settings into Unity's input manager from the code of your application.
 
+## Restrictions
+__OpenInputManager__ uses *SerializedObject* which is a Unity editor functionality so
+* It will only work in Unity
+* It will break the build if you try to build to an executable
+You can however use it during the development process to create/delete axes in batch (eg. create all axes for a joystick) 
+
 ## What does it do?
 It allows you to configure _ProjectSettings/Input_ from your code.
 After you have added or removed inputs, you can read them as you'd do normally through
